@@ -38,13 +38,32 @@
     button.secondary { background: white; color: var(--accent); }
     .result-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin: 24px 0 9px; }
     .count { color: var(--muted); }
-    .table-wrap { overflow-x: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; }
-    table { width: 100%; border-collapse: collapse; min-width: 760px; }
-    th, td { border-bottom: 1px solid var(--line); padding: 12px 13px; text-align: left; vertical-align: top; }
-    th { background: #eef3fb; font-size: .86rem; }
-    tbody tr:last-child td { border-bottom: 0; }
+    .result-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+    .result-actions button { padding: 8px 12px; }
+    .card-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 12px; }
+    .ms-card { border: 1px solid var(--line); border-radius: 14px; background: var(--panel); box-shadow: 0 7px 20px rgba(30, 50, 90, .05); overflow: hidden; }
+    .ms-card summary { display: flex; justify-content: space-between; gap: 12px; padding: 14px; cursor: pointer; list-style: none; }
+    .ms-card summary::-webkit-details-marker { display: none; }
+    .summary-main { display: grid; gap: 7px; min-width: 0; }
+    .summary-title-row { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+    .ms-name { font-size: 1rem; overflow-wrap: anywhere; }
+    .rarity { display: inline-block; border-radius: 999px; padding: 3px 8px; background: var(--accent-soft); color: #163b79; font-size: .78rem; font-weight: 700; }
+    .primary-series { color: var(--muted); font-size: .88rem; overflow-wrap: anywhere; }
+    .tag-overview { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; }
     .tag { display: inline-block; margin: 0 5px 5px 0; padding: 3px 8px; border-radius: 999px; background: #edf2f8; font-size: .82rem; }
-    .empty { color: var(--muted); text-align: center; padding: 24px; }
+    .tag-overview .tag { margin: 0; }
+    .more-tags { color: var(--muted); font-size: .8rem; }
+    .toggle-label { flex: 0 0 auto; align-self: center; color: var(--accent); font-size: .82rem; font-weight: 700; }
+    .hide-label { display: none; }
+    .ms-card[open] .show-label { display: none; }
+    .ms-card[open] .hide-label { display: inline; }
+    .card-details { display: grid; gap: 13px; border-top: 1px solid var(--line); padding: 14px; background: #fbfcff; }
+    .detail-section h3 { margin: 0 0 6px; font-size: .88rem; color: #3d4d67; }
+    .detail-section p { line-height: 1.55; }
+    .detail-section ul { margin: 0; padding-left: 1.2em; }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 5px; }
+    .tag-list .tag { margin: 0; }
+    .empty { grid-column: 1 / -1; color: var(--muted); text-align: center; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); padding: 24px; }
     .notice { margin: 0 0 14px; border: 1px solid #e3b341; border-radius: 10px; padding: 11px 13px; background: #fff7d6; color: #664d03; }
     .notice.error { border-color: #e07a7a; background: #fff0f0; color: #8f2020; }
     .notice[hidden] { display: none; }
@@ -62,16 +81,13 @@
       .mode { min-height: auto; flex-wrap: wrap; }
       button { width: 100%; min-height: 44px; }
       .result-head { margin-top: 18px; }
-      .table-wrap { overflow: visible; border: 0; background: transparent; }
-      table { min-width: 0; }
-      thead { display: none; }
-      tbody { display: grid; gap: 10px; }
-      tr { display: block; border: 1px solid var(--line); border-radius: 11px; background: var(--panel); padding: 6px 10px; }
-      td { display: grid; grid-template-columns: 5.5em minmax(0, 1fr); gap: 8px; border-bottom: 1px solid var(--line); padding: 8px 0; font-size: .9rem; overflow-wrap: anywhere; }
-      td::before { content: attr(data-label); color: var(--muted); font-size: .78rem; font-weight: 700; }
-      td:last-child { border-bottom: 0; }
-      td.empty { display: block; padding: 18px 8px; }
-      td.empty::before { content: none; }
+      .result-actions { display: grid; grid-template-columns: 1fr 1fr; }
+      .result-actions button { min-height: 40px; padding: 7px 9px; }
+      .card-list { grid-template-columns: 1fr; gap: 10px; }
+      .ms-card { border-radius: 11px; }
+      .ms-card summary { padding: 12px; }
+      .toggle-label { font-size: .76rem; }
+      .card-details { padding: 12px; }
     }
   </style>
 </head>
@@ -141,53 +157,172 @@
       <h2>検索結果</h2>
       <p id="result-count" class="count">6件</p>
     </div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>MS名</th><th>レアリティ</th><th>シリーズ</th><th>タグ</th><th>備考</th></tr></thead>
-        <tbody id="results"><tr>
-            <td data-label="MS名">劉備ユニコーンガンダム(EX)</td>
-            <td data-label="レアリティ">UR</td>
-            <td data-label="シリーズ">SDガンダムワールド 三国創傑伝</td>
-            <td data-label="タグ"><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">専用機</span><span class="tag">SDガンダム</span><span class="tag">一撃必殺</span><span class="tag">白色</span></td>
-            <td data-label="備考">スクショ確認済み。</td>
-          </tr>
-<tr>
-            <td data-label="MS名">ガンダム・キャリバーン(最終決戦時)(EX)</td>
-            <td data-label="レアリティ">UR</td>
-            <td data-label="シリーズ">機動戦士ガンダム 水星の魔女</td>
-            <td data-label="タグ"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">試作機</span><span class="tag">GUND-ARM</span><span class="tag">一撃必殺</span><span class="tag">白色</span></td>
-            <td data-label="備考">スクショ確認済み。</td>
-          </tr>
-<tr>
-            <td data-label="MS名">ガンダム・バルバトスルプスレクス(EX)</td>
-            <td data-label="レアリティ">UR</td>
-            <td data-label="シリーズ">機動戦士ガンダム 鉄血のオルフェンズ</td>
-            <td data-label="タグ"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">専用機</span><span class="tag">鉄華団</span><span class="tag">阿頼耶識システム</span><span class="tag">堅牢</span><span class="tag">白色</span></td>
-            <td data-label="備考">スクショ確認済み。</td>
-          </tr>
-<tr>
-            <td data-label="MS名">ガンダムAGE-1 ノーマル(EX)</td>
-            <td data-label="レアリティ">UR</td>
-            <td data-label="シリーズ">機動戦士ガンダムAGE</td>
-            <td data-label="タグ"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">地球連邦軍(AGE)</span><span class="tag">堅牢</span><span class="tag">エース機</span><span class="tag">白色</span><span class="tag">換装</span><span class="tag">AGEシステム</span></td>
-            <td data-label="備考">スクショ確認済み。</td>
-          </tr>
-<tr>
-            <td data-label="MS名">ガンダムエクシア(EX)</td>
-            <td data-label="レアリティ">UR</td>
-            <td data-label="シリーズ">機動戦士ガンダム00</td>
-            <td data-label="タグ"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">ソレスタルビーイング</span><span class="tag">突破力</span><span class="tag">エース機</span><span class="tag">疾風迅雷</span></td>
-            <td data-label="備考">スクショ確認済み。</td>
-          </tr>
-<tr>
-            <td data-label="MS名">ガンダムアストレイ レッドフレーム改(EX)</td>
-            <td data-label="レアリティ">UR</td>
-            <td data-label="シリーズ">機動戦士ガンダムSEED VS ASTRAY<br>機動戦士ガンダムSEED ASTRAY<br>機動戦士ガンダムSEED DESTINY</td>
-            <td data-label="タグ"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">ライバル</span><span class="tag">ジャンク屋組合</span><span class="tag">突破力</span><span class="tag">SEEDシリーズ</span><span class="tag">エース機</span><span class="tag">赤色</span></td>
-            <td data-label="備考">スクショ確認済み。シリーズ3件を個別登録。</td>
-          </tr></tbody>
-      </table>
+    <div class="result-actions">
+      <button id="expand-all" class="secondary" type="button">すべて展開</button>
+      <button id="collapse-all" class="secondary" type="button">すべて閉じる</button>
     </div>
+    <div id="results" class="card-list"><details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <strong class="ms-name">劉備ユニコーンガンダム(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">SDガンダムワールド 三国創傑伝</span>
+              <span class="tag-overview"><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">専用機</span><span class="more-tags">ほか3件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>SDガンダムワールド 三国創傑伝</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">専用機</span><span class="tag">SDガンダム</span><span class="tag">一撃必殺</span><span class="tag">白色</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>スクショ確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <strong class="ms-name">ガンダム・キャリバーン(最終決戦時)(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダム 水星の魔女</span>
+              <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか4件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダム 水星の魔女</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">試作機</span><span class="tag">GUND-ARM</span><span class="tag">一撃必殺</span><span class="tag">白色</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>スクショ確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <strong class="ms-name">ガンダム・バルバトスルプスレクス(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダム 鉄血のオルフェンズ</span>
+              <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダム 鉄血のオルフェンズ</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">専用機</span><span class="tag">鉄華団</span><span class="tag">阿頼耶識システム</span><span class="tag">堅牢</span><span class="tag">白色</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>スクショ確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <strong class="ms-name">ガンダムAGE-1 ノーマル(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダムAGE</span>
+              <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか6件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダムAGE</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">地球連邦軍(AGE)</span><span class="tag">堅牢</span><span class="tag">エース機</span><span class="tag">白色</span><span class="tag">換装</span><span class="tag">AGEシステム</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>スクショ確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <strong class="ms-name">ガンダムエクシア(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダム00</span>
+              <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか4件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダム00</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">ソレスタルビーイング</span><span class="tag">突破力</span><span class="tag">エース機</span><span class="tag">疾風迅雷</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>スクショ確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <strong class="ms-name">ガンダムアストレイ レッドフレーム改(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダムSEED VS ASTRAY</span>
+              <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか6件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダムSEED VS ASTRAY</li><li>機動戦士ガンダムSEED ASTRAY</li><li>機動戦士ガンダムSEED DESTINY</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">ライバル</span><span class="tag">ジャンク屋組合</span><span class="tag">突破力</span><span class="tag">SEEDシリーズ</span><span class="tag">エース機</span><span class="tag">赤色</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>スクショ確認済み。シリーズ3件を個別登録。</p>
+            </div>
+          </div>
+        </details></div>
   </main>
   <script>
     (function () {
@@ -226,14 +361,25 @@
           var values = input.dataset.filterKind === "series" ? record.series : record.tags;
           return Array.isArray(values) && values.indexOf(input.value) !== -1;
         }
-        function rowHtml(record) {
-          return '<tr>'
-            + '<td data-label="MS名">' + escapeHtml(record.ms_name) + '</td>'
-            + '<td data-label="レアリティ">' + escapeHtml(record.rarity) + '</td>'
-            + '<td data-label="シリーズ">' + record.series.map(escapeHtml).join("<br>") + '</td>'
-            + '<td data-label="タグ">' + record.tags.map(function (tag) { return '<span class="tag">' + escapeHtml(tag) + '</span>'; }).join("") + '</td>'
-            + '<td data-label="備考">' + escapeHtml(record.note) + '</td>'
-            + '</tr>';
+        function tagChips(values) {
+          return values.map(function (tag) { return '<span class="tag">' + escapeHtml(tag) + '</span>'; }).join("");
+        }
+        function cardHtml(record) {
+          var overview = tagChips(record.tags.slice(0, 3));
+          var remaining = record.tags.length > 3 ? '<span class="more-tags">ほか' + (record.tags.length - 3) + '件</span>' : "";
+          var seriesList = record.series.map(function (value) { return '<li>' + escapeHtml(value) + '</li>'; }).join("");
+          var noteBlock = record.note
+            ? '<div class="detail-section"><h3>備考</h3><p>' + escapeHtml(record.note) + '</p></div>'
+            : "";
+          return '<details class="ms-card">'
+            + '<summary><span class="summary-main">'
+            + '<span class="summary-title-row"><strong class="ms-name">' + escapeHtml(record.ms_name) + '</strong><span class="rarity">' + escapeHtml(record.rarity) + '</span></span>'
+            + '<span class="primary-series">' + escapeHtml(record.series[0] || "シリーズ未登録") + '</span>'
+            + '<span class="tag-overview">' + overview + remaining + '</span>'
+            + '</span><span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span></summary>'
+            + '<div class="card-details"><div class="detail-section"><h3>シリーズ一覧</h3><ul>' + seriesList + '</ul></div>'
+            + '<div class="detail-section"><h3>タグ一覧</h3><div class="tag-list">' + tagChips(record.tags) + '</div></div>'
+            + noteBlock + '</div></details>';
         }
         function updateResults() {
           var selected = filterInputs.filter(function (input) { return input.checked; });
@@ -250,8 +396,8 @@
           });
           resultCount.textContent = filtered.length + "件";
           results.innerHTML = filtered.length
-            ? filtered.map(rowHtml).join("")
-            : '<tr><td colspan="5" class="empty">条件に一致するMSはありません。</td></tr>';
+            ? filtered.map(cardHtml).join("")
+            : '<p class="empty">条件に一致するMSはありません。</p>';
         }
         filterInputs.forEach(function (input) { input.addEventListener("change", updateResults); });
         modeInputs.forEach(function (input) { input.addEventListener("change", updateResults); });
@@ -261,6 +407,12 @@
           keyword.value = "";
           document.querySelector('input[name="mode"][value="and"]').checked = true;
           updateResults();
+        });
+        document.getElementById("expand-all").addEventListener("click", function () {
+          Array.prototype.forEach.call(results.querySelectorAll(".ms-card"), function (card) { card.open = true; });
+        });
+        document.getElementById("collapse-all").addEventListener("click", function () {
+          Array.prototype.forEach.call(results.querySelectorAll(".ms-card"), function (card) { card.open = false; });
         });
         updateResults();
         message.hidden = true;
