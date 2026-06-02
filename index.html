@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gジェネエターナル MSタグ検索DB</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --ink: #172033;
+      --muted: #667085;
+      --line: #d9e0ec;
+      --accent: #2557a7;
+      --accent-soft: #e9f0ff;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+    main { max-width: 1180px; margin: 0 auto; padding: 28px 18px 48px; }
+    h1 { margin: 0 0 6px; font-size: clamp(1.5rem, 4vw, 2.1rem); }
+    h2 { margin: 0 0 10px; font-size: 1rem; }
+    p { margin: 0; }
+    .sub { color: var(--muted); margin-bottom: 18px; }
+    .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: 0 7px 20px rgba(30, 50, 90, .05); }
+    .controls { display: grid; gap: 14px; }
+    .filter-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+    .chip-list { display: flex; flex-wrap: wrap; gap: 8px; }
+    .filter-chip { cursor: pointer; }
+    .filter-chip input { position: absolute; opacity: 0; pointer-events: none; }
+    .filter-chip span { display: inline-block; border: 1px solid var(--line); border-radius: 999px; padding: 7px 11px; background: #fff; font-size: .9rem; }
+    .filter-chip input:checked + span { border-color: var(--accent); background: var(--accent-soft); color: #163b79; font-weight: 700; }
+    .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; }
+    .field { display: grid; gap: 5px; min-width: 230px; flex: 1; }
+    input[type="search"] { width: 100%; border: 1px solid var(--line); border-radius: 9px; padding: 10px 11px; font: inherit; }
+    .mode { display: flex; gap: 10px; align-items: center; min-height: 40px; }
+    button { border: 1px solid var(--accent); border-radius: 9px; background: var(--accent); color: white; padding: 10px 14px; font: inherit; cursor: pointer; }
+    button.secondary { background: white; color: var(--accent); }
+    .result-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin: 24px 0 9px; }
+    .count { color: var(--muted); }
+    .table-wrap { overflow-x: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; }
+    table { width: 100%; border-collapse: collapse; min-width: 760px; }
+    th, td { border-bottom: 1px solid var(--line); padding: 12px 13px; text-align: left; vertical-align: top; }
+    th { background: #eef3fb; font-size: .86rem; }
+    tbody tr:last-child td { border-bottom: 0; }
+    .tag { display: inline-block; margin: 0 5px 5px 0; padding: 3px 8px; border-radius: 999px; background: #edf2f8; font-size: .82rem; }
+    .empty { color: var(--muted); text-align: center; padding: 24px; }
+    .notice { margin: 0 0 14px; border: 1px solid #e3b341; border-radius: 10px; padding: 11px 13px; background: #fff7d6; color: #664d03; }
+    .notice.error { border-color: #e07a7a; background: #fff0f0; color: #8f2020; }
+    .notice[hidden] { display: none; }
+    @media (max-width: 640px) {
+      main { padding: 18px 10px 32px; }
+      h1 { font-size: 1.45rem; line-height: 1.25; }
+      .sub { margin-bottom: 12px; font-size: .9rem; }
+      .panel { border-radius: 11px; padding: 12px; }
+      .filter-grid { display: block; }
+      .filter-grid > div + div { margin-top: 14px; }
+      .chip-list { gap: 6px; }
+      .filter-chip span { padding: 6px 9px; font-size: .82rem; }
+      .row { display: grid; gap: 10px; }
+      .field { min-width: 0; }
+      .mode { min-height: auto; flex-wrap: wrap; }
+      button { width: 100%; min-height: 44px; }
+      .result-head { margin-top: 18px; }
+      .table-wrap { overflow: visible; border: 0; background: transparent; }
+      table { min-width: 0; }
+      thead { display: none; }
+      tbody { display: grid; gap: 10px; }
+      tr { display: block; border: 1px solid var(--line); border-radius: 11px; background: var(--panel); padding: 6px 10px; }
+      td { display: grid; grid-template-columns: 5.5em minmax(0, 1fr); gap: 8px; border-bottom: 1px solid var(--line); padding: 8px 0; font-size: .9rem; overflow-wrap: anywhere; }
+      td::before { content: attr(data-label); color: var(--muted); font-size: .78rem; font-weight: 700; }
+      td:last-child { border-bottom: 0; }
+      td.empty { display: block; padding: 18px 8px; }
+      td.empty::before { content: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Gジェネエターナル MSタグ検索DB</h1>
+    <p class="sub">シリーズとタグを組み合わせて、確認済みMSデータを検索します。</p>
+    <noscript>
+      <p class="notice">JavaScriptが無効です。検索機能は使えませんが、登録済みMSの一覧は下に表示しています。</p>
+    </noscript>
+    <p id="app-message" class="notice" role="status">登録済みMSの一覧を表示しています。検索機能を準備中です。</p>
+    <section class="panel controls" aria-label="検索条件">
+      <div class="filter-grid">
+        <div>
+          <h2>シリーズ</h2>
+          <div class="chip-list"><label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="SDガンダムワールド 三国創傑伝"> <span>SDガンダムワールド 三国創傑伝</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダム 水星の魔女"> <span>機動戦士ガンダム 水星の魔女</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダム 鉄血のオルフェンズ"> <span>機動戦士ガンダム 鉄血のオルフェンズ</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダム00"> <span>機動戦士ガンダム00</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダムAGE"> <span>機動戦士ガンダムAGE</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダムSEED ASTRAY"> <span>機動戦士ガンダムSEED ASTRAY</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダムSEED DESTINY"> <span>機動戦士ガンダムSEED DESTINY</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダムSEED VS ASTRAY"> <span>機動戦士ガンダムSEED VS ASTRAY</span></label></div>
+        </div>
+        <div>
+          <h2>タグ</h2>
+          <div class="chip-list"><label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="AGEシステム"> <span>AGEシステム</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="GUND-ARM"> <span>GUND-ARM</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="SDガンダム"> <span>SDガンダム</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="SEEDシリーズ"> <span>SEEDシリーズ</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="エース機"> <span>エース機</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="オルタナティブシリーズ"> <span>オルタナティブシリーズ</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="ガンダム"> <span>ガンダム</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="ジャンク屋組合"> <span>ジャンク屋組合</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="ソレスタルビーイング"> <span>ソレスタルビーイング</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="ライバル"> <span>ライバル</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="一撃必殺"> <span>一撃必殺</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="主人公"> <span>主人公</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="地球連邦軍(AGE)"> <span>地球連邦軍(AGE)</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="堅牢"> <span>堅牢</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="専用機"> <span>専用機</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="換装"> <span>換装</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="疾風迅雷"> <span>疾風迅雷</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="白色"> <span>白色</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="突破力"> <span>突破力</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="試作機"> <span>試作機</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="赤色"> <span>赤色</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="鉄華団"> <span>鉄華団</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="阿頼耶識システム"> <span>阿頼耶識システム</span></label></div>
+        </div>
+      </div>
+      <div class="row">
+        <label class="field">キーワード検索
+          <input id="keyword" type="search" placeholder="MS名を入力" autocomplete="off">
+        </label>
+        <div>
+          <h2>検索モード</h2>
+          <div class="mode">
+            <label><input type="radio" name="mode" value="and" checked> AND検索</label>
+            <label><input type="radio" name="mode" value="or"> OR検索</label>
+          </div>
+        </div>
+        <button id="reset" class="secondary" type="button">条件リセット</button>
+      </div>
+    </section>
+    <div class="result-head">
+      <h2>検索結果</h2>
+      <p id="result-count" class="count">6件</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>MS名</th><th>レアリティ</th><th>シリーズ</th><th>タグ</th><th>備考</th></tr></thead>
+        <tbody id="results"><tr>
+            <td data-label="MS名">劉備ユニコーンガンダム(EX)</td>
+            <td data-label="レアリティ">UR</td>
+            <td data-label="シリーズ">SDガンダムワールド 三国創傑伝</td>
+            <td data-label="タグ"><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">専用機</span><span class="tag">SDガンダム</span><span class="tag">一撃必殺</span><span class="tag">白色</span></td>
+            <td data-label="備考">スクショ確認済み。</td>
+          </tr>
+<tr>
+            <td data-label="MS名">ガンダム・キャリバーン(最終決戦時)(EX)</td>
+            <td data-label="レアリティ">UR</td>
+            <td data-label="シリーズ">機動戦士ガンダム 水星の魔女</td>
+            <td data-label="タグ"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">試作機</span><span class="tag">GUND-ARM</span><span class="tag">一撃必殺</span><span class="tag">白色</span></td>
+            <td data-label="備考">スクショ確認済み。</td>
+          </tr>
+<tr>
+            <td data-label="MS名">ガンダム・バルバトスルプスレクス(EX)</td>
+            <td data-label="レアリティ">UR</td>
+            <td data-label="シリーズ">機動戦士ガンダム 鉄血のオルフェンズ</td>
+            <td data-label="タグ"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">専用機</span><span class="tag">鉄華団</span><span class="tag">阿頼耶識システム</span><span class="tag">堅牢</span><span class="tag">白色</span></td>
+            <td data-label="備考">スクショ確認済み。</td>
+          </tr>
+<tr>
+            <td data-label="MS名">ガンダムAGE-1 ノーマル(EX)</td>
+            <td data-label="レアリティ">UR</td>
+            <td data-label="シリーズ">機動戦士ガンダムAGE</td>
+            <td data-label="タグ"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">地球連邦軍(AGE)</span><span class="tag">堅牢</span><span class="tag">エース機</span><span class="tag">白色</span><span class="tag">換装</span><span class="tag">AGEシステム</span></td>
+            <td data-label="備考">スクショ確認済み。</td>
+          </tr>
+<tr>
+            <td data-label="MS名">ガンダムエクシア(EX)</td>
+            <td data-label="レアリティ">UR</td>
+            <td data-label="シリーズ">機動戦士ガンダム00</td>
+            <td data-label="タグ"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">ソレスタルビーイング</span><span class="tag">突破力</span><span class="tag">エース機</span><span class="tag">疾風迅雷</span></td>
+            <td data-label="備考">スクショ確認済み。</td>
+          </tr>
+<tr>
+            <td data-label="MS名">ガンダムアストレイ レッドフレーム改(EX)</td>
+            <td data-label="レアリティ">UR</td>
+            <td data-label="シリーズ">機動戦士ガンダムSEED VS ASTRAY<br>機動戦士ガンダムSEED ASTRAY<br>機動戦士ガンダムSEED DESTINY</td>
+            <td data-label="タグ"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">ライバル</span><span class="tag">ジャンク屋組合</span><span class="tag">突破力</span><span class="tag">SEEDシリーズ</span><span class="tag">エース機</span><span class="tag">赤色</span></td>
+            <td data-label="備考">スクショ確認済み。シリーズ3件を個別登録。</td>
+          </tr></tbody>
+      </table>
+    </div>
+  </main>
+  <script>
+    (function () {
+      var message = document.getElementById("app-message");
+      window.showMsTagError = function (text) {
+        message.className = "notice error";
+        message.textContent = text;
+        message.hidden = false;
+      };
+      window.addEventListener("error", function (event) {
+        window.showMsTagError("検索機能でエラーが発生しました。一覧はそのまま閲覧できます。詳細: " + (event.message || "不明なエラー"));
+      });
+    })();
+  </script>
+  <script id="records-data" type="application/json">[{"ms_id": "MS0001", "ms_name": "劉備ユニコーンガンダム(EX)", "rarity": "UR", "series": ["SDガンダムワールド 三国創傑伝"], "tags": ["ガンダム", "主人公", "専用機", "SDガンダム", "一撃必殺", "白色"], "source_image": "IMG_4029.PNG; IMG_4050.PNG", "confidence": "確認済み", "note": "スクショ確認済み。", "updated_at": "2026-06-02"}, {"ms_id": "MS0002", "ms_name": "ガンダム・キャリバーン(最終決戦時)(EX)", "rarity": "UR", "series": ["機動戦士ガンダム 水星の魔女"], "tags": ["オルタナティブシリーズ", "ガンダム", "主人公", "試作機", "GUND-ARM", "一撃必殺", "白色"], "source_image": "IMG_4034.PNG; IMG_4051.PNG", "confidence": "確認済み", "note": "スクショ確認済み。", "updated_at": "2026-06-02"}, {"ms_id": "MS0003", "ms_name": "ガンダム・バルバトスルプスレクス(EX)", "rarity": "UR", "series": ["機動戦士ガンダム 鉄血のオルフェンズ"], "tags": ["オルタナティブシリーズ", "ガンダム", "主人公", "専用機", "鉄華団", "阿頼耶識システム", "堅牢", "白色"], "source_image": "IMG_4038.PNG; IMG_4052.PNG", "confidence": "確認済み", "note": "スクショ確認済み。", "updated_at": "2026-06-02"}, {"ms_id": "MS0004", "ms_name": "ガンダムAGE-1 ノーマル(EX)", "rarity": "UR", "series": ["機動戦士ガンダムAGE"], "tags": ["オルタナティブシリーズ", "ガンダム", "主人公", "地球連邦軍(AGE)", "堅牢", "エース機", "白色", "換装", "AGEシステム"], "source_image": "IMG_4065.PNG; IMG_4064.PNG", "confidence": "確認済み", "note": "スクショ確認済み。", "updated_at": "2026-06-02"}, {"ms_id": "MS0005", "ms_name": "ガンダムエクシア(EX)", "rarity": "UR", "series": ["機動戦士ガンダム00"], "tags": ["オルタナティブシリーズ", "ガンダム", "主人公", "ソレスタルビーイング", "突破力", "エース機", "疾風迅雷"], "source_image": "IMG_4097.PNG; IMG_4096.PNG", "confidence": "確認済み", "note": "スクショ確認済み。", "updated_at": "2026-06-02"}, {"ms_id": "MS0006", "ms_name": "ガンダムアストレイ レッドフレーム改(EX)", "rarity": "UR", "series": ["機動戦士ガンダムSEED VS ASTRAY", "機動戦士ガンダムSEED ASTRAY", "機動戦士ガンダムSEED DESTINY"], "tags": ["オルタナティブシリーズ", "ガンダム", "主人公", "ライバル", "ジャンク屋組合", "突破力", "SEEDシリーズ", "エース機", "赤色"], "source_image": "IMG_4106.PNG; IMG_4105.PNG", "confidence": "確認済み", "note": "スクショ確認済み。シリーズ3件を個別登録。", "updated_at": "2026-06-02"}]</script>
+  <script>
+    (function () {
+      var message = document.getElementById("app-message");
+      function showError(text) {
+        window.showMsTagError(text);
+      }
+      try {
+        var records = JSON.parse(document.getElementById("records-data").textContent);
+        if (!Array.isArray(records)) throw new Error("recordsデータの形式が不正です。");
+        var results = document.getElementById("results");
+        var resultCount = document.getElementById("result-count");
+        var keyword = document.getElementById("keyword");
+        var filterInputs = Array.prototype.slice.call(document.querySelectorAll("[data-filter-kind]"));
+        var modeInputs = Array.prototype.slice.call(document.querySelectorAll('input[name="mode"]'));
+        function escapeHtml(value) {
+          return String(value == null ? "" : value).replace(/[&<>"']/g, function (character) {
+            return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[character];
+          });
+        }
+        function matchesFilter(record, input) {
+          var values = input.dataset.filterKind === "series" ? record.series : record.tags;
+          return Array.isArray(values) && values.indexOf(input.value) !== -1;
+        }
+        function rowHtml(record) {
+          return '<tr>'
+            + '<td data-label="MS名">' + escapeHtml(record.ms_name) + '</td>'
+            + '<td data-label="レアリティ">' + escapeHtml(record.rarity) + '</td>'
+            + '<td data-label="シリーズ">' + record.series.map(escapeHtml).join("<br>") + '</td>'
+            + '<td data-label="タグ">' + record.tags.map(function (tag) { return '<span class="tag">' + escapeHtml(tag) + '</span>'; }).join("") + '</td>'
+            + '<td data-label="備考">' + escapeHtml(record.note) + '</td>'
+            + '</tr>';
+        }
+        function updateResults() {
+          var selected = filterInputs.filter(function (input) { return input.checked; });
+          var checkedMode = document.querySelector('input[name="mode"]:checked');
+          var mode = checkedMode ? checkedMode.value : "and";
+          var term = keyword.value.trim().toLocaleLowerCase("ja");
+          var filtered = records.filter(function (record) {
+            var conditionMatch = selected.length === 0
+              || (mode === "and"
+                ? selected.every(function (input) { return matchesFilter(record, input); })
+                : selected.some(function (input) { return matchesFilter(record, input); }));
+            var keywordMatch = !term || String(record.ms_name || "").toLocaleLowerCase("ja").indexOf(term) !== -1;
+            return conditionMatch && keywordMatch;
+          });
+          resultCount.textContent = filtered.length + "件";
+          results.innerHTML = filtered.length
+            ? filtered.map(rowHtml).join("")
+            : '<tr><td colspan="5" class="empty">条件に一致するMSはありません。</td></tr>';
+        }
+        filterInputs.forEach(function (input) { input.addEventListener("change", updateResults); });
+        modeInputs.forEach(function (input) { input.addEventListener("change", updateResults); });
+        keyword.addEventListener("input", updateResults);
+        document.getElementById("reset").addEventListener("click", function () {
+          filterInputs.forEach(function (input) { input.checked = false; });
+          keyword.value = "";
+          document.querySelector('input[name="mode"][value="and"]').checked = true;
+          updateResults();
+        });
+        updateResults();
+        message.hidden = true;
+      } catch (error) {
+        showError("検索データを読み込めませんでした。一覧はそのまま閲覧できます。詳細: " + (error.message || "不明なエラー"));
+      }
+    })();
+  </script>
+</body>
+</html>
