@@ -25,6 +25,12 @@
     .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: 0 7px 20px rgba(30, 50, 90, .05); }
     .controls { display: grid; gap: 14px; }
     .filter-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+    .filter-group { border: 1px solid var(--line); border-radius: 10px; background: #fbfcff; }
+    .filter-group summary { display: flex; justify-content: space-between; gap: 10px; padding: 11px 12px; color: #294260; cursor: pointer; font-weight: 700; list-style: none; }
+    .filter-group summary::-webkit-details-marker { display: none; }
+    .filter-group summary::after { content: "▼"; color: var(--accent); font-size: .76rem; }
+    .filter-group[open] summary::after { content: "▲"; }
+    .filter-content { display: grid; gap: 10px; border-top: 1px solid var(--line); padding: 11px 12px 12px; }
     .chip-list { display: flex; flex-wrap: wrap; gap: 8px; }
     .filter-chip { cursor: pointer; }
     .filter-chip input { position: absolute; opacity: 0; pointer-events: none; }
@@ -33,6 +39,7 @@
     .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; }
     .field { display: grid; gap: 5px; min-width: 230px; flex: 1; }
     input[type="search"] { width: 100%; border: 1px solid var(--line); border-radius: 9px; padding: 10px 11px; font: inherit; }
+    .tag-filter-field { display: grid; gap: 5px; font-size: .86rem; color: var(--muted); }
     .mode { display: flex; gap: 10px; align-items: center; min-height: 40px; }
     button { border: 1px solid var(--accent); border-radius: 9px; background: var(--accent); color: white; padding: 10px 14px; font: inherit; cursor: pointer; }
     button.secondary { background: white; color: var(--accent); }
@@ -40,6 +47,11 @@
     .count { color: var(--muted); }
     .result-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
     .result-actions button { padding: 8px 12px; }
+    .selected-panel { display: grid; gap: 7px; }
+    .selected-title { color: var(--muted); font-size: .84rem; font-weight: 700; }
+    .selected-conditions { display: flex; flex-wrap: wrap; gap: 6px; }
+    .condition-chip { border: 1px solid #b8c8e5; border-radius: 999px; background: var(--accent-soft); color: #163b79; padding: 5px 9px; font-size: .82rem; cursor: pointer; }
+    .selected-empty { color: var(--muted); font-size: .84rem; }
     .card-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 12px; }
     .ms-card { border: 1px solid var(--line); border-radius: 14px; background: var(--panel); box-shadow: 0 7px 20px rgba(30, 50, 90, .05); overflow: hidden; }
     .ms-card summary { display: flex; justify-content: space-between; gap: 12px; padding: 14px; cursor: pointer; list-style: none; }
@@ -73,7 +85,9 @@
       .sub { margin-bottom: 12px; font-size: .9rem; }
       .panel { border-radius: 11px; padding: 12px; }
       .filter-grid { display: block; }
-      .filter-grid > div + div { margin-top: 14px; }
+      .filter-grid > details + details { margin-top: 10px; }
+      .filter-group summary { padding: 10px; }
+      .filter-content { padding: 10px; }
       .chip-list { gap: 6px; }
       .filter-chip span { padding: 6px 9px; font-size: .82rem; }
       .row { display: grid; gap: 10px; }
@@ -101,9 +115,10 @@
     <p id="app-message" class="notice" role="status">登録済みMSの一覧を表示しています。検索機能を準備中です。</p>
     <section class="panel controls" aria-label="検索条件">
       <div class="filter-grid">
-        <div>
-          <h2>シリーズ</h2>
-          <div class="chip-list"><label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="SDガンダムワールド 三国創傑伝"> <span>SDガンダムワールド 三国創傑伝</span></label>
+        <details class="filter-group" id="series-group">
+          <summary><span id="series-summary">シリーズを選択</span></summary>
+          <div class="filter-content">
+            <div class="chip-list"><label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="SDガンダムワールド 三国創傑伝"> <span>SDガンダムワールド 三国創傑伝</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダム 水星の魔女"> <span>機動戦士ガンダム 水星の魔女</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダム 鉄血のオルフェンズ"> <span>機動戦士ガンダム 鉄血のオルフェンズ</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダム00"> <span>機動戦士ガンダム00</span></label>
@@ -111,10 +126,15 @@
 <label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダムSEED ASTRAY"> <span>機動戦士ガンダムSEED ASTRAY</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダムSEED DESTINY"> <span>機動戦士ガンダムSEED DESTINY</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダムSEED VS ASTRAY"> <span>機動戦士ガンダムSEED VS ASTRAY</span></label></div>
-        </div>
-        <div>
-          <h2>タグ</h2>
-          <div class="chip-list"><label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="AGEシステム"> <span>AGEシステム</span></label>
+          </div>
+        </details>
+        <details class="filter-group" id="tag-group">
+          <summary><span id="tag-summary">タグを選択</span></summary>
+          <div class="filter-content">
+            <label class="tag-filter-field">タグ名フィルタ
+              <input id="tag-filter" type="search" placeholder="タグ名を入力" autocomplete="off">
+            </label>
+            <div class="chip-list"><label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="AGEシステム"> <span>AGEシステム</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="GUND-ARM"> <span>GUND-ARM</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="SDガンダム"> <span>SDガンダム</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="SEEDシリーズ"> <span>SEEDシリーズ</span></label>
@@ -137,7 +157,8 @@
 <label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="赤色"> <span>赤色</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="鉄華団"> <span>鉄華団</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="阿頼耶識システム"> <span>阿頼耶識システム</span></label></div>
-        </div>
+          </div>
+        </details>
       </div>
       <div class="row">
         <label class="field">キーワード検索
@@ -151,6 +172,10 @@
           </div>
         </div>
         <button id="reset" class="secondary" type="button">条件リセット</button>
+      </div>
+      <div class="selected-panel">
+        <p class="selected-title">選択中条件</p>
+        <div id="selected-conditions" class="selected-conditions"><span class="selected-empty">選択中の条件はありません。</span></div>
       </div>
     </section>
     <div class="result-head">
@@ -350,6 +375,10 @@
         var results = document.getElementById("results");
         var resultCount = document.getElementById("result-count");
         var keyword = document.getElementById("keyword");
+        var tagFilter = document.getElementById("tag-filter");
+        var seriesSummary = document.getElementById("series-summary");
+        var tagSummary = document.getElementById("tag-summary");
+        var selectedConditions = document.getElementById("selected-conditions");
         var filterInputs = Array.prototype.slice.call(document.querySelectorAll("[data-filter-kind]"));
         var modeInputs = Array.prototype.slice.call(document.querySelectorAll('input[name="mode"]'));
         function escapeHtml(value) {
@@ -399,14 +428,54 @@
             ? filtered.map(cardHtml).join("")
             : '<p class="empty">条件に一致するMSはありません。</p>';
         }
-        filterInputs.forEach(function (input) { input.addEventListener("change", updateResults); });
+        function updateFilterSummaries() {
+          var seriesCount = filterInputs.filter(function (input) { return input.dataset.filterKind === "series" && input.checked; }).length;
+          var tagCount = filterInputs.filter(function (input) { return input.dataset.filterKind === "tag" && input.checked; }).length;
+          seriesSummary.textContent = "シリーズを選択" + (seriesCount ? "（" + seriesCount + "件選択中）" : "");
+          tagSummary.textContent = "タグを選択" + (tagCount ? "（" + tagCount + "件選択中）" : "");
+        }
+        function updateTagCandidates() {
+          var term = tagFilter.value.trim().toLocaleLowerCase("ja");
+          filterInputs.forEach(function (input) {
+            if (input.dataset.filterKind !== "tag") return;
+            input.parentElement.hidden = !!term && input.value.toLocaleLowerCase("ja").indexOf(term) === -1;
+          });
+        }
+        function updateSelectedConditions() {
+          var selected = filterInputs.filter(function (input) { return input.checked; });
+          selectedConditions.innerHTML = selected.length
+            ? selected.map(function (input) {
+                return '<button class="condition-chip" type="button" data-remove-kind="' + escapeHtml(input.dataset.filterKind) + '" data-remove-value="' + escapeHtml(input.value) + '">' + escapeHtml(input.value) + ' ×</button>';
+              }).join("")
+            : '<span class="selected-empty">選択中の条件はありません。</span>';
+        }
+        function updateUi() {
+          updateFilterSummaries();
+          updateSelectedConditions();
+          updateResults();
+        }
+        filterInputs.forEach(function (input) { input.addEventListener("change", updateUi); });
         modeInputs.forEach(function (input) { input.addEventListener("change", updateResults); });
         keyword.addEventListener("input", updateResults);
+        tagFilter.addEventListener("input", updateTagCandidates);
+selectedConditions.addEventListener("click", function (event) {
+  var button = event.target;
+  while (button && button !== selectedConditions && (" " + button.className + " ").indexOf(" condition-chip ") === -1) {
+    button = button.parentElement;
+  }
+  if (!button || button === selectedConditions) return;
+          filterInputs.forEach(function (input) {
+            if (input.dataset.filterKind === button.dataset.removeKind && input.value === button.dataset.removeValue) input.checked = false;
+          });
+          updateUi();
+        });
         document.getElementById("reset").addEventListener("click", function () {
           filterInputs.forEach(function (input) { input.checked = false; });
           keyword.value = "";
+          tagFilter.value = "";
+          updateTagCandidates();
           document.querySelector('input[name="mode"][value="and"]').checked = true;
-          updateResults();
+          updateUi();
         });
         document.getElementById("expand-all").addEventListener("click", function () {
           Array.prototype.forEach.call(results.querySelectorAll(".ms-card"), function (card) { card.open = true; });
@@ -414,7 +483,7 @@
         document.getElementById("collapse-all").addEventListener("click", function () {
           Array.prototype.forEach.call(results.querySelectorAll(".ms-card"), function (card) { card.open = false; });
         });
-        updateResults();
+        updateUi();
         message.hidden = true;
       } catch (error) {
         showError("検索データを読み込めませんでした。一覧はそのまま閲覧できます。詳細: " + (error.message || "不明なエラー"));
