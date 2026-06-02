@@ -52,6 +52,14 @@
     .selected-conditions { display: flex; flex-wrap: wrap; gap: 6px; }
     .condition-chip { border: 1px solid #b8c8e5; border-radius: 999px; background: var(--accent-soft); color: #163b79; padding: 5px 9px; font-size: .82rem; cursor: pointer; }
     .selected-empty { color: var(--muted); font-size: .84rem; }
+    .fixed-selection-bar { position: fixed; right: 14px; bottom: 14px; left: 14px; z-index: 20; max-width: 760px; margin: 0 auto; border: 1px solid #b8c8e5; border-radius: 13px; background: rgba(255, 255, 255, .98); box-shadow: 0 10px 30px rgba(30, 50, 90, .2); padding: 10px; }
+    .fixed-selection-bar[hidden] { display: none; }
+    .fixed-selection-head { display: flex; align-items: center; gap: 8px; }
+    .fixed-selection-count { flex: 1; color: #294260; font-size: .9rem; font-weight: 700; }
+    .fixed-selection-bar button { min-height: 38px; padding: 7px 10px; font-size: .84rem; }
+    .fixed-selection-panel { margin-top: 9px; border-top: 1px solid var(--line); padding-top: 9px; }
+    .fixed-selection-panel[hidden] { display: none; }
+    body.has-fixed-selection main { padding-bottom: 126px; }
     .card-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 12px; }
     .ms-card { border: 1px solid var(--line); border-radius: 14px; background: var(--panel); box-shadow: 0 7px 20px rgba(30, 50, 90, .05); overflow: hidden; }
     .ms-card summary { display: flex; justify-content: space-between; gap: 12px; padding: 14px; cursor: pointer; list-style: none; }
@@ -102,6 +110,10 @@
       .ms-card summary { padding: 12px; }
       .toggle-label { font-size: .76rem; }
       .card-details { padding: 12px; }
+      .fixed-selection-bar { right: 8px; bottom: 8px; left: 8px; padding: 8px; }
+      .fixed-selection-head { gap: 6px; }
+      .fixed-selection-bar button { width: auto; min-height: 38px; padding: 7px 9px; }
+      body.has-fixed-selection main { padding-bottom: 158px; }
     }
   </style>
 </head>
@@ -349,6 +361,16 @@
           </div>
         </details></div>
   </main>
+  <aside id="fixed-selection-bar" class="fixed-selection-bar" aria-label="選択中条件" hidden>
+    <div class="fixed-selection-head">
+      <p id="fixed-selection-count" class="fixed-selection-count">選択中：0件</p>
+      <button id="fixed-selection-toggle" class="secondary" type="button" aria-expanded="false">条件を見る</button>
+      <button id="fixed-selection-reset" class="secondary" type="button">リセット</button>
+    </div>
+    <div id="fixed-selection-panel" class="fixed-selection-panel" hidden>
+      <div id="fixed-selected-conditions" class="selected-conditions"></div>
+    </div>
+  </aside>
   <script>
     (function () {
       var message = document.getElementById("app-message");
@@ -379,6 +401,11 @@
         var seriesSummary = document.getElementById("series-summary");
         var tagSummary = document.getElementById("tag-summary");
         var selectedConditions = document.getElementById("selected-conditions");
+        var fixedSelectionBar = document.getElementById("fixed-selection-bar");
+        var fixedSelectionCount = document.getElementById("fixed-selection-count");
+        var fixedSelectionToggle = document.getElementById("fixed-selection-toggle");
+        var fixedSelectionPanel = document.getElementById("fixed-selection-panel");
+        var fixedSelectedConditions = document.getElementById("fixed-selected-conditions");
         var filterInputs = Array.prototype.slice.call(document.querySelectorAll("[data-filter-kind]"));
         var modeInputs = Array.prototype.slice.call(document.querySelectorAll('input[name="mode"]'));
         function escapeHtml(value) {
@@ -441,13 +468,26 @@
             input.parentElement.hidden = !!term && input.value.toLocaleLowerCase("ja").indexOf(term) === -1;
           });
         }
-        function updateSelectedConditions() {
-          var selected = filterInputs.filter(function (input) { return input.checked; });
-          selectedConditions.innerHTML = selected.length
+        function conditionChipsHtml(selected) {
+          return selected.length
             ? selected.map(function (input) {
                 return '<button class="condition-chip" type="button" data-remove-kind="' + escapeHtml(input.dataset.filterKind) + '" data-remove-value="' + escapeHtml(input.value) + '">' + escapeHtml(input.value) + ' ×</button>';
               }).join("")
             : '<span class="selected-empty">選択中の条件はありません。</span>';
+        }
+        function updateSelectedConditions() {
+          var selected = filterInputs.filter(function (input) { return input.checked; });
+          var chipsHtml = conditionChipsHtml(selected);
+          selectedConditions.innerHTML = chipsHtml;
+          fixedSelectedConditions.innerHTML = chipsHtml;
+          fixedSelectionCount.textContent = "選択中：" + selected.length + "件";
+          fixedSelectionBar.hidden = selected.length === 0;
+          document.body.classList.toggle("has-fixed-selection", selected.length > 0);
+          if (selected.length === 0) {
+            fixedSelectionPanel.hidden = true;
+            fixedSelectionToggle.textContent = "条件を見る";
+            fixedSelectionToggle.setAttribute("aria-expanded", "false");
+          }
         }
         function updateUi() {
           updateFilterSummaries();
@@ -458,25 +498,34 @@
         modeInputs.forEach(function (input) { input.addEventListener("change", updateResults); });
         keyword.addEventListener("input", updateResults);
         tagFilter.addEventListener("input", updateTagCandidates);
-selectedConditions.addEventListener("click", function (event) {
-  var button = event.target;
-  while (button && button !== selectedConditions && (" " + button.className + " ").indexOf(" condition-chip ") === -1) {
-    button = button.parentElement;
-  }
-  if (!button || button === selectedConditions) return;
+        function removeSelectedCondition(event, container) {
+          var button = event.target;
+          while (button && button !== container && (" " + button.className + " ").indexOf(" condition-chip ") === -1) {
+            button = button.parentElement;
+          }
+          if (!button || button === container) return;
           filterInputs.forEach(function (input) {
             if (input.dataset.filterKind === button.dataset.removeKind && input.value === button.dataset.removeValue) input.checked = false;
           });
           updateUi();
+        }
+        selectedConditions.addEventListener("click", function (event) { removeSelectedCondition(event, selectedConditions); });
+        fixedSelectedConditions.addEventListener("click", function (event) { removeSelectedCondition(event, fixedSelectedConditions); });
+        fixedSelectionToggle.addEventListener("click", function () {
+          fixedSelectionPanel.hidden = !fixedSelectionPanel.hidden;
+          fixedSelectionToggle.textContent = fixedSelectionPanel.hidden ? "条件を見る" : "閉じる";
+          fixedSelectionToggle.setAttribute("aria-expanded", fixedSelectionPanel.hidden ? "false" : "true");
         });
-        document.getElementById("reset").addEventListener("click", function () {
+        function resetConditions() {
           filterInputs.forEach(function (input) { input.checked = false; });
           keyword.value = "";
           tagFilter.value = "";
           updateTagCandidates();
           document.querySelector('input[name="mode"][value="and"]').checked = true;
           updateUi();
-        });
+        }
+        document.getElementById("reset").addEventListener("click", resetConditions);
+        document.getElementById("fixed-selection-reset").addEventListener("click", resetConditions);
         document.getElementById("expand-all").addEventListener("click", function () {
           Array.prototype.forEach.call(results.querySelectorAll(".ms-card"), function (card) { card.open = true; });
         });
