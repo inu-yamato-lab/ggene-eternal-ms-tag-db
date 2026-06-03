@@ -40,6 +40,7 @@
     .field { display: grid; gap: 5px; min-width: 230px; flex: 1; }
     input[type="search"] { width: 100%; border: 1px solid var(--line); border-radius: 9px; padding: 10px 11px; font: inherit; }
     .tag-filter-field { display: grid; gap: 5px; font-size: .86rem; color: var(--muted); }
+    .type-filter { display: grid; gap: 7px; }
     .mode { display: flex; gap: 10px; align-items: center; min-height: 40px; }
     button { border: 1px solid var(--accent); border-radius: 9px; background: var(--accent); color: white; padding: 10px 14px; font: inherit; cursor: pointer; }
     button.secondary { background: white; color: var(--accent); }
@@ -68,6 +69,10 @@
     .summary-title-row { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
     .ms-name { font-size: 1rem; overflow-wrap: anywhere; }
     .rarity { display: inline-block; border-radius: 999px; padding: 3px 8px; background: var(--accent-soft); color: #163b79; font-size: .78rem; font-weight: 700; }
+    .unit-type { display: inline-block; border-radius: 999px; padding: 3px 8px; background: #eef1f5; color: #475467; font-size: .78rem; font-weight: 700; }
+    .unit-type[data-unit-type="攻撃"] { background: #fff0f0; color: #a62b2b; }
+    .unit-type[data-unit-type="耐久"] { background: #edf7ee; color: #27713a; }
+    .unit-type[data-unit-type="支援"] { background: #fff6dc; color: #856404; }
     .primary-series { color: var(--muted); font-size: .88rem; overflow-wrap: anywhere; }
     .tag-overview { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; }
     .tag { display: inline-block; margin: 0 5px 5px 0; padding: 3px 8px; border-radius: 999px; background: #edf2f8; font-size: .82rem; }
@@ -130,14 +135,51 @@
         <details class="filter-group" id="series-group">
           <summary><span id="series-summary">シリーズを選択</span></summary>
           <div class="filter-content">
-            <div class="chip-list"><label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="SDガンダムワールド 三国創傑伝"> <span>SDガンダムワールド 三国創傑伝</span></label>
+            <div class="chip-list"><label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="CCA-MSV"> <span>CCA-MSV</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="GUNDAM BATTLE MASTER"> <span>GUNDAM BATTLE MASTER</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="GUNDAM EVOLVE"> <span>GUNDAM EVOLVE</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="MSV"> <span>MSV</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="SDガンダム GGENERATION"> <span>SDガンダム GGENERATION</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="SDガンダムワールド 三国創傑伝"> <span>SDガンダムワールド 三国創傑伝</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="SDガンダム外伝"> <span>SDガンダム外伝</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="ガンダムビルドファイターズ"> <span>ガンダムビルドファイターズ</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="ガンダム・センチネル"> <span>ガンダム・センチネル</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="劇場版 機動戦士Zガンダム"> <span>劇場版 機動戦士Zガンダム</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="新機動戦記ガンダムW"> <span>新機動戦記ガンダムW</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="新機動戦記ガンダムW Endless Waltz"> <span>新機動戦記ガンダムW Endless Waltz</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士Zガンダム"> <span>機動戦士Zガンダム</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士Zガンダム A New Translation"> <span>機動戦士Zガンダム A New Translation</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダム"> <span>機動戦士ガンダム</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダム KATANA"> <span>機動戦士ガンダム KATANA</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダム MS IGLOO"> <span>機動戦士ガンダム MS IGLOO</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダム THE ORIGIN"> <span>機動戦士ガンダム THE ORIGIN</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダム エコール・デュ・シエル"> <span>機動戦士ガンダム エコール・デュ・シエル</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダム ギレンの野望"> <span>機動戦士ガンダム ギレンの野望</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダム サンダーボルト"> <span>機動戦士ガンダム サンダーボルト</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダム 水星の魔女"> <span>機動戦士ガンダム 水星の魔女</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダム 第08MS小隊"> <span>機動戦士ガンダム 第08MS小隊</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダム 逆襲のシャア"> <span>機動戦士ガンダム 逆襲のシャア</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダム 鉄血のオルフェンズ"> <span>機動戦士ガンダム 鉄血のオルフェンズ</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダム 鉄血のオルフェンズ 月鋼"> <span>機動戦士ガンダム 鉄血のオルフェンズ 月鋼</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダム 閃光のハサウェイ"> <span>機動戦士ガンダム 閃光のハサウェイ</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダム00"> <span>機動戦士ガンダム00</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダム0080 ポケットの中の戦争"> <span>機動戦士ガンダム0080 ポケットの中の戦争</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダム0083 STARDUST MEMORY"> <span>機動戦士ガンダム0083 STARDUST MEMORY</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダム00V"> <span>機動戦士ガンダム00V</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダムAGE"> <span>機動戦士ガンダムAGE</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダムF91"> <span>機動戦士ガンダムF91</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダムNT"> <span>機動戦士ガンダムNT</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダムSEED"> <span>機動戦士ガンダムSEED</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダムSEED ASTRAY"> <span>機動戦士ガンダムSEED ASTRAY</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダムSEED DESTINY"> <span>機動戦士ガンダムSEED DESTINY</span></label>
-<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダムSEED VS ASTRAY"> <span>機動戦士ガンダムSEED VS ASTRAY</span></label></div>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダムSEED VS ASTRAY"> <span>機動戦士ガンダムSEED VS ASTRAY</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダムSEED X ASTRAY"> <span>機動戦士ガンダムSEED X ASTRAY</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダムUC"> <span>機動戦士ガンダムUC</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダムZZ"> <span>機動戦士ガンダムZZ</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士ガンダム外伝 THE BLUE DESTINY"> <span>機動戦士ガンダム外伝 THE BLUE DESTINY</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動戦士クロスボーン・ガンダム"> <span>機動戦士クロスボーン・ガンダム</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動新世紀ガンダムX"> <span>機動新世紀ガンダムX</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="series" value="機動武闘伝Gガンダム"> <span>機動武闘伝Gガンダム</span></label></div>
           </div>
         </details>
         <details class="filter-group" id="tag-group">
@@ -147,30 +189,84 @@
               <input id="tag-filter" type="search" placeholder="タグ名を入力" autocomplete="off">
             </label>
             <div class="chip-list"><label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="AGEシステム"> <span>AGEシステム</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="ALICE"> <span>ALICE</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="G GENERATIONシリーズ"> <span>G GENERATIONシリーズ</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="GUND-ARM"> <span>GUND-ARM</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="NT-D"> <span>NT-D</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="OZ"> <span>OZ</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="SDガンダム"> <span>SDガンダム</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="SEEDシリーズ"> <span>SEEDシリーズ</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="Wシリーズ"> <span>Wシリーズ</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="アルティメット"> <span>アルティメット</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="エゥーゴ"> <span>エゥーゴ</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="エース機"> <span>エース機</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="オペレーション・メテオ"> <span>オペレーション・メテオ</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="オルタナティブシリーズ"> <span>オルタナティブシリーズ</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="オーブ"> <span>オーブ</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="ガンダム"> <span>ガンダム</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="ガンプラ"> <span>ガンプラ</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="サイコミュ"> <span>サイコミュ</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="ザク"> <span>ザク</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="ザフト"> <span>ザフト</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="ジオン公国軍"> <span>ジオン公国軍</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="ジム"> <span>ジム</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="ジャンク屋組合"> <span>ジャンク屋組合</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="ゼロシステム"> <span>ゼロシステム</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="ソレスタルビーイング"> <span>ソレスタルビーイング</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="ティターンズ"> <span>ティターンズ</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="デビルガンダム軍団"> <span>デビルガンダム軍団</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="ナノスキン"> <span>ナノスキン</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="ニュータイプ専用機"> <span>ニュータイプ専用機</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="ネオ・ジオン"> <span>ネオ・ジオン</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="フラッシュシステム"> <span>フラッシュシステム</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="フリーデン"> <span>フリーデン</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="マフティー"> <span>マフティー</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="モノアイ"> <span>モノアイ</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="モビルアーマー"> <span>モビルアーマー</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="モビル・トレース・システム"> <span>モビル・トレース・システム</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="ライバル"> <span>ライバル</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="リユース・サイコ・デバイス"> <span>リユース・サイコ・デバイス</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="一撃必殺"> <span>一撃必殺</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="三隻同盟"> <span>三隻同盟</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="不撓不屈"> <span>不撓不屈</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="主人公"> <span>主人公</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="傭兵"> <span>傭兵</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="可変機"> <span>可変機</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="各国代表"> <span>各国代表</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="地上用"> <span>地上用</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="地球連合軍"> <span>地球連合軍</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="地球連邦軍(AGE)"> <span>地球連邦軍(AGE)</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="地球連邦軍(X)"> <span>地球連邦軍(X)</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="地球連邦軍(宇宙世紀)"> <span>地球連邦軍(宇宙世紀)</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="堅牢"> <span>堅牢</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="大型機"> <span>大型機</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="宇宙世紀シリーズ"> <span>宇宙世紀シリーズ</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="宇宙海賊クロスボーン"> <span>宇宙海賊クロスボーン</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="専用機"> <span>専用機</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="指揮官機"> <span>指揮官機</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="換装"> <span>換装</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="明鏡止水"> <span>明鏡止水</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="水中用"> <span>水中用</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="疾風迅雷"> <span>疾風迅雷</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="白色"> <span>白色</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="神経接続システム"> <span>神経接続システム</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="空中用"> <span>空中用</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="突破力"> <span>突破力</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="試作機"> <span>試作機</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="赤色"> <span>赤色</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="金色"> <span>金色</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="鉄華団"> <span>鉄華団</span></label>
-<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="阿頼耶識システム"> <span>阿頼耶識システム</span></label></div>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="阿頼耶識システム"> <span>阿頼耶識システム</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="電光石火"> <span>電光石火</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="tag" value="黒色"> <span>黒色</span></label></div>
           </div>
         </details>
+      </div>
+      <div class="type-filter">
+        <h2>タイプ</h2>
+        <div class="chip-list"><label class="filter-chip"><input type="checkbox" data-filter-kind="unit_type" value="攻撃"> <span>攻撃</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="unit_type" value="耐久"> <span>耐久</span></label>
+<label class="filter-chip"><input type="checkbox" data-filter-kind="unit_type" value="支援"> <span>支援</span></label></div>
       </div>
       <div class="row">
         <label class="field">キーワード検索
@@ -192,7 +288,7 @@
     </section>
     <div class="result-head">
       <h2>検索結果</h2>
-      <p id="result-count" class="count">6件</p>
+      <p id="result-count" class="count">78件</p>
     </div>
     <div class="result-actions">
       <button id="expand-all" class="secondary" type="button">すべて展開</button>
@@ -202,6 +298,7 @@
           <summary>
             <span class="summary-main">
               <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">劉備ユニコーンガンダム(EX)</strong>
                 <span class="rarity">UR</span>
               </span>
@@ -221,7 +318,7 @@
             </div>
             <div class="detail-section">
               <h3>備考</h3>
-              <p>スクショ確認済み。</p>
+              <p>スクショ読取ドラフト。シリーズは表示ロゴから転記。人間確認後に正本へ反映する。</p>
             </div>
           </div>
         </details>
@@ -229,6 +326,7 @@
           <summary>
             <span class="summary-main">
               <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">ガンダム・キャリバーン(最終決戦時)(EX)</strong>
                 <span class="rarity">UR</span>
               </span>
@@ -248,7 +346,7 @@
             </div>
             <div class="detail-section">
               <h3>備考</h3>
-              <p>スクショ確認済み。</p>
+              <p>スクショ読取ドラフト。人間確認後に正本へ反映する。</p>
             </div>
           </div>
         </details>
@@ -256,6 +354,7 @@
           <summary>
             <span class="summary-main">
               <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">ガンダム・バルバトスルプスレクス(EX)</strong>
                 <span class="rarity">UR</span>
               </span>
@@ -275,7 +374,7 @@
             </div>
             <div class="detail-section">
               <h3>備考</h3>
-              <p>スクショ確認済み。</p>
+              <p>スクショ読取ドラフト。人間確認後に正本へ反映する。</p>
             </div>
           </div>
         </details>
@@ -283,6 +382,7 @@
           <summary>
             <span class="summary-main">
               <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">ガンダムAGE-1 ノーマル(EX)</strong>
                 <span class="rarity">UR</span>
               </span>
@@ -302,7 +402,7 @@
             </div>
             <div class="detail-section">
               <h3>備考</h3>
-              <p>スクショ確認済み。</p>
+              <p>スクショ上でタグ9件を確認。人間確認後に正本へ反映する。</p>
             </div>
           </div>
         </details>
@@ -310,6 +410,7 @@
           <summary>
             <span class="summary-main">
               <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">ガンダムエクシア(EX)</strong>
                 <span class="rarity">UR</span>
               </span>
@@ -329,7 +430,7 @@
             </div>
             <div class="detail-section">
               <h3>備考</h3>
-              <p>スクショ確認済み。</p>
+              <p>スクショ読取ドラフト。人間確認後に正本へ反映する。</p>
             </div>
           </div>
         </details>
@@ -337,6 +438,7 @@
           <summary>
             <span class="summary-main">
               <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">ガンダムアストレイ レッドフレーム改(EX)</strong>
                 <span class="rarity">UR</span>
               </span>
@@ -356,7 +458,2023 @@
             </div>
             <div class="detail-section">
               <h3>備考</h3>
-              <p>スクショ確認済み。シリーズ3件を個別登録。</p>
+              <p>スクショ上でシリーズロゴ3件、タグ9件を確認。正本反映前に人間確認する。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="耐久">耐久</span>
+                <strong class="ms-name">ガンダム(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダム</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダム</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">地球連邦軍(宇宙世紀)</span><span class="tag">堅牢</span><span class="tag">エース機</span><span class="tag">白色</span><span class="tag">疾風迅雷</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>人間確認済み。タグmasterへ反映済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="攻撃">攻撃</span>
+                <strong class="ms-name">ガンダムEz8(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダム 第08MS小隊</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダム 第08MS小隊</li><li>機動戦士ガンダム</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">地球連邦軍(宇宙世紀)</span><span class="tag">堅牢</span><span class="tag">指揮官機</span><span class="tag">白色</span><span class="tag">地上用</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>人間確認済み。タグmasterへ反映済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="支援">支援</span>
+                <strong class="ms-name">ジ・O(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士Zガンダム</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">ライバル</span><span class="more-tags">ほか4件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士Zガンダム</li><li>機動戦士Zガンダム A New Translation</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">ライバル</span><span class="tag">サイコミュ</span><span class="tag">ティターンズ</span><span class="tag">堅牢</span><span class="tag">ニュータイプ専用機</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>人間確認済み。タグmasterへ反映済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="攻撃">攻撃</span>
+                <strong class="ms-name">ジオング(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダム</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">ライバル</span><span class="more-tags">ほか4件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダム</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">ライバル</span><span class="tag">試作機</span><span class="tag">サイコミュ</span><span class="tag">ジオン公国軍</span><span class="tag">堅牢</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体再読み取りテストで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="攻撃">攻撃</span>
+                <strong class="ms-name">シャア専用ザクII(THE ORIGIN版)(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダム THE ORIGIN</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダム THE ORIGIN</li><li>機動戦士ガンダム</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">主人公</span><span class="tag">専用機</span><span class="tag">ジオン公国軍</span><span class="tag">突破力</span><span class="tag">ザク</span><span class="tag">赤色</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体再読み取りテストで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="攻撃">攻撃</span>
+                <strong class="ms-name">ケンプファー</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダム0080 ポケットの中の戦争</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">試作機</span><span class="more-tags">ほか2件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダム0080 ポケットの中の戦争</li><li>機動戦士ガンダム</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">試作機</span><span class="tag">ジオン公国軍</span><span class="tag">電光石火</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体再読み取りテストで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="攻撃">攻撃</span>
+                <strong class="ms-name">ブルーディスティニー1号機(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダム外伝 THE BLUE DESTINY</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダム外伝 THE BLUE DESTINY</li><li>機動戦士ガンダム</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">試作機</span><span class="tag">地球連邦軍(宇宙世紀)</span><span class="tag">一撃必殺</span><span class="tag">ジム</span><span class="tag">地上用</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体再読み取りテストで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="耐久">耐久</span>
+                <strong class="ms-name">フルアーマー・ガンダム(サンダーボルト版)(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダム サンダーボルト</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダム サンダーボルト</li><li>機動戦士ガンダム</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">ライバル</span><span class="tag">地球連邦軍(宇宙世紀)</span><span class="tag">電光石火</span><span class="tag">エース機</span><span class="tag">黒色</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体再読み取りテストで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="支援">支援</span>
+                <strong class="ms-name">サイコ・ザク(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダム サンダーボルト</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">主人公</span><span class="more-tags">ほか7件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダム サンダーボルト</li><li>機動戦士ガンダム</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">主人公</span><span class="tag">ライバル</span><span class="tag">専用機</span><span class="tag">ジオン公国軍</span><span class="tag">リユース・サイコ・デバイス</span><span class="tag">一撃必殺</span><span class="tag">ザク</span><span class="tag">赤色</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="攻撃">攻撃</span>
+                <strong class="ms-name">アトラスガンダム(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダム サンダーボルト</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか8件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダム サンダーボルト</li><li>機動戦士ガンダム</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">ライバル</span><span class="tag">試作機</span><span class="tag">地球連邦軍(宇宙世紀)</span><span class="tag">突破力</span><span class="tag">水中用</span><span class="tag">空中用</span><span class="tag">白色</span><span class="tag">疾風迅雷</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="支援">支援</span>
+                <strong class="ms-name">ガンダム試作2号機(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダム0083 STARDUST MEMORY</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">ライバル</span><span class="more-tags">ほか4件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダム0083 STARDUST MEMORY</li><li>機動戦士ガンダム</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">ライバル</span><span class="tag">試作機</span><span class="tag">ジオン公国軍</span><span class="tag">堅牢</span><span class="tag">白色</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="耐久">耐久</span>
+                <strong class="ms-name">ガンダム試作3号機(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダム0083 STARDUST MEMORY</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダム0083 STARDUST MEMORY</li><li>機動戦士ガンダム</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">モビルアーマー</span><span class="tag">試作機</span><span class="tag">地球連邦軍(宇宙世紀)</span><span class="tag">突破力</span><span class="tag">白色</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="攻撃">攻撃</span>
+                <strong class="ms-name">ノイエ・ジール(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダム0083 STARDUST MEMORY</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">ライバル</span><span class="more-tags">ほか4件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダム0083 STARDUST MEMORY</li><li>機動戦士ガンダム</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">ライバル</span><span class="tag">モビルアーマー</span><span class="tag">試作機</span><span class="tag">ジオン公国軍</span><span class="tag">突破力</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="攻撃">攻撃</span>
+                <strong class="ms-name">ストライカー・カスタム(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダム KATANA</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか4件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダム KATANA</li><li>機動戦士ガンダム</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">地球連邦軍(宇宙世紀)</span><span class="tag">一撃必殺</span><span class="tag">エース機</span><span class="tag">ジム</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="支援">支援</span>
+                <strong class="ms-name">ル・シーニュ(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダム エコール・デュ・シエル</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダム エコール・デュ・シエル</li><li>機動戦士Zガンダム</li><li>機動戦士ガンダムZZ</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">サイコミュ</span><span class="tag">エゥーゴ</span><span class="tag">突破力</span><span class="tag">ニュータイプ専用機</span><span class="tag">白色</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="攻撃">攻撃</span>
+                <strong class="ms-name">Zガンダム(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士Zガンダム</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか7件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士Zガンダム</li><li>劇場版 機動戦士Zガンダム</li><li>機動戦士ガンダムZZ</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">可変機</span><span class="tag">サイコミュ</span><span class="tag">エゥーゴ</span><span class="tag">電光石火</span><span class="tag">ニュータイプ専用機</span><span class="tag">空中用</span><span class="tag">白色</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="攻撃">攻撃</span>
+                <strong class="ms-name">Ex-Sガンダム(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">ガンダム・センチネル</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか8件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>ガンダム・センチネル</li><li>機動戦士ガンダムZZ</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">可変機</span><span class="tag">試作機</span><span class="tag">地球連邦軍(宇宙世紀)</span><span class="tag">ALICE</span><span class="tag">堅牢</span><span class="tag">空中用</span><span class="tag">白色</span><span class="tag">疾風迅雷</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="耐久">耐久</span>
+                <strong class="ms-name">フルアーマーZZガンダム(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダムZZ</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか4件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダムZZ</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">サイコミュ</span><span class="tag">エゥーゴ</span><span class="tag">突破力</span><span class="tag">ニュータイプ専用機</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="攻撃">攻撃</span>
+                <strong class="ms-name">キュベレイ(ZZ版)(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダムZZ</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ライバル</span><span class="tag">サイコミュ</span><span class="more-tags">ほか4件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダムZZ</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ライバル</span><span class="tag">サイコミュ</span><span class="tag">ネオ・ジオン</span><span class="tag">突破力</span><span class="tag">ニュータイプ専用機</span><span class="tag">白色</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="支援">支援</span>
+                <strong class="ms-name">νガンダム(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダム 逆襲のシャア</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか6件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダム 逆襲のシャア</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">サイコミュ</span><span class="tag">地球連邦軍(宇宙世紀)</span><span class="tag">電光石火</span><span class="tag">ニュータイプ専用機</span><span class="tag">白色</span><span class="tag">疾風迅雷</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="攻撃">攻撃</span>
+                <strong class="ms-name">サザビー(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダム 逆襲のシャア</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">ライバル</span><span class="more-tags">ほか5件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダム 逆襲のシャア</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">ライバル</span><span class="tag">サイコミュ</span><span class="tag">ネオ・ジオン</span><span class="tag">一撃必殺</span><span class="tag">ニュータイプ専用機</span><span class="tag">赤色</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="攻撃">攻撃</span>
+                <strong class="ms-name">Hi-νガンダム(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">CCA-MSV</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>CCA-MSV</li><li>機動戦士ガンダム 逆襲のシャア</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">サイコミュ</span><span class="tag">地球連邦軍(宇宙世紀)</span><span class="tag">電光石火</span><span class="tag">ニュータイプ専用機</span><span class="tag">白色</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="支援">支援</span>
+                <strong class="ms-name">ナイチンゲール</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">CCA-MSV</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">ライバル</span><span class="more-tags">ほか6件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>CCA-MSV</li><li>機動戦士ガンダム 逆襲のシャア</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">ライバル</span><span class="tag">サイコミュ</span><span class="tag">ネオ・ジオン</span><span class="tag">一撃必殺</span><span class="tag">ニュータイプ専用機</span><span class="tag">赤色</span><span class="tag">不撓不屈</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="耐久">耐久</span>
+                <strong class="ms-name">νガンダム(ダブル・フィン・ファンネル装備型)(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">CCA-MSV</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか6件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>CCA-MSV</li><li>機動戦士ガンダム 逆襲のシャア</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">サイコミュ</span><span class="tag">地球連邦軍(宇宙世紀)</span><span class="tag">突破力</span><span class="tag">ニュータイプ専用機</span><span class="tag">白色</span><span class="tag">不撓不屈</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="攻撃">攻撃</span>
+                <strong class="ms-name">ユニコーンガンダム(デストロイモード)(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダムUC</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか7件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダムUC</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">サイコミュ</span><span class="tag">地球連邦軍(宇宙世紀)</span><span class="tag">NT-D</span><span class="tag">電光石火</span><span class="tag">ニュータイプ専用機</span><span class="tag">赤色</span><span class="tag">不撓不屈</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="耐久">耐久</span>
+                <strong class="ms-name">バンシィ・ノルン(デストロイモード)(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダムUC</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">ライバル</span><span class="more-tags">ほか6件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダムUC</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">ライバル</span><span class="tag">試作機</span><span class="tag">サイコミュ</span><span class="tag">地球連邦軍(宇宙世紀)</span><span class="tag">NT-D</span><span class="tag">堅牢</span><span class="tag">金色</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="支援">支援</span>
+                <strong class="ms-name">シナンジュ(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダムUC</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">ライバル</span><span class="more-tags">ほか6件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダムUC</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">ライバル</span><span class="tag">サイコミュ</span><span class="tag">ネオ・ジオン</span><span class="tag">一撃必殺</span><span class="tag">指揮官機</span><span class="tag">赤色</span><span class="tag">疾風迅雷</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="支援">支援</span>
+                <strong class="ms-name">ユニコーンガンダム(デストロイモード/覚醒)(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダムUC</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダムUC</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">サイコミュ</span><span class="tag">地球連邦軍(宇宙世紀)</span><span class="tag">NT-D</span><span class="tag">突破力</span><span class="tag">エース機</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="攻撃">攻撃</span>
+                <strong class="ms-name">ガンダムデルタカイ</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">MSV</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか8件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>MSV</li><li>機動戦士ガンダムUC</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">可変機</span><span class="tag">サイコミュ</span><span class="tag">地球連邦軍(宇宙世紀)</span><span class="tag">突破力</span><span class="tag">エース機</span><span class="tag">空中用</span><span class="tag">白色</span><span class="tag">アルティメット</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="耐久">耐久</span>
+                <strong class="ms-name">ナラティブガンダムA装備(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダムNT</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか7件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダムNT</li><li>機動戦士ガンダムUC</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">モビルアーマー</span><span class="tag">サイコミュ</span><span class="tag">地球連邦軍(宇宙世紀)</span><span class="tag">NT-D</span><span class="tag">大型機</span><span class="tag">堅牢</span><span class="tag">白色</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="攻撃">攻撃</span>
+                <strong class="ms-name">ユニコーンガンダム3号機 フェネクス(デストロイモード)(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダムNT</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか7件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダムNT</li><li>機動戦士ガンダムUC</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">サイコミュ</span><span class="tag">地球連邦軍(宇宙世紀)</span><span class="tag">NT-D</span><span class="tag">一撃必殺</span><span class="tag">ニュータイプ専用機</span><span class="tag">金色</span><span class="tag">不撓不屈</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="攻撃">攻撃</span>
+                <strong class="ms-name">Ξガンダム(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダム 閃光のハサウェイ</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか6件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダム 閃光のハサウェイ</li><li>機動戦士ガンダム 逆襲のシャア</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">サイコミュ</span><span class="tag">電光石火</span><span class="tag">エース機</span><span class="tag">空中用</span><span class="tag">白色</span><span class="tag">マフティー</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="耐久">耐久</span>
+                <strong class="ms-name">ペーネロペー(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダム 閃光のハサウェイ</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">ライバル</span><span class="more-tags">ほか7件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダム 閃光のハサウェイ</li><li>機動戦士ガンダム 逆襲のシャア</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">ライバル</span><span class="tag">可変機</span><span class="tag">試作機</span><span class="tag">サイコミュ</span><span class="tag">地球連邦軍(宇宙世紀)</span><span class="tag">堅牢</span><span class="tag">空中用</span><span class="tag">白色</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="耐久">耐久</span>
+                <strong class="ms-name">ガンダムF91</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダムF91</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダムF91</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">サイコミュ</span><span class="tag">地球連邦軍(宇宙世紀)</span><span class="tag">突破力</span><span class="tag">エース機</span><span class="tag">白色</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="攻撃">攻撃</span>
+                <strong class="ms-name">クロスボーン・ガンダムX1改(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士クロスボーン・ガンダム</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか4件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士クロスボーン・ガンダム</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">堅牢</span><span class="tag">宇宙海賊クロスボーン</span><span class="tag">エース機</span><span class="tag">白色</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="攻撃">攻撃</span>
+                <strong class="ms-name">マスターガンダム(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動武闘伝Gガンダム</span>
+              <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">ライバル</span><span class="more-tags">ほか5件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動武闘伝Gガンダム</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">ライバル</span><span class="tag">専用機</span><span class="tag">デビルガンダム軍団</span><span class="tag">モビル・トレース・システム</span><span class="tag">電光石火</span><span class="tag">黒色</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="攻撃">攻撃</span>
+                <strong class="ms-name">ゴッドガンダム(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動武闘伝Gガンダム</span>
+              <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか6件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動武闘伝Gガンダム</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">各国代表</span><span class="tag">モビル・トレース・システム</span><span class="tag">突破力</span><span class="tag">エース機</span><span class="tag">明鏡止水</span><span class="tag">白色</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="攻撃">攻撃</span>
+                <strong class="ms-name">ウイングガンダムゼロ(EW版)(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">新機動戦記ガンダムW Endless Waltz</span>
+              <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか7件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>新機動戦記ガンダムW Endless Waltz</li><li>新機動戦記ガンダムW</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">専用機</span><span class="tag">オペレーション・メテオ</span><span class="tag">ゼロシステム</span><span class="tag">突破力</span><span class="tag">Wシリーズ</span><span class="tag">白色</span><span class="tag">不撓不屈</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="耐久">耐久</span>
+                <strong class="ms-name">ガンダムデスサイズヘル(EW版)(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">新機動戦記ガンダムW Endless Waltz</span>
+              <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">専用機</span><span class="more-tags">ほか5件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>新機動戦記ガンダムW Endless Waltz</li><li>新機動戦記ガンダムW</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">専用機</span><span class="tag">オペレーション・メテオ</span><span class="tag">堅牢</span><span class="tag">Wシリーズ</span><span class="tag">黒色</span><span class="tag">不撓不屈</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="支援">支援</span>
+                <strong class="ms-name">トールギスIII</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">新機動戦記ガンダムW Endless Waltz</span>
+              <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">試作機</span><span class="tag">一撃必殺</span><span class="more-tags">ほか4件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>新機動戦記ガンダムW Endless Waltz</li><li>新機動戦記ガンダムW</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">オルタナティブシリーズ</span><span class="tag">試作機</span><span class="tag">一撃必殺</span><span class="tag">Wシリーズ</span><span class="tag">空中用</span><span class="tag">白色</span><span class="tag">不撓不屈</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="攻撃">攻撃</span>
+                <strong class="ms-name">ガンダムDX(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動新世紀ガンダムX</span>
+              <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動新世紀ガンダムX</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">フリーデン</span><span class="tag">一撃必殺</span><span class="tag">エース機</span><span class="tag">白色</span><span class="tag">フラッシュシステム</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="支援">支援</span>
+                <strong class="ms-name">ガンダムヴァサーゴチェストブレイク(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動新世紀ガンダムX</span>
+              <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">ライバル</span><span class="more-tags">ほか5件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動新世紀ガンダムX</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">ライバル</span><span class="tag">専用機</span><span class="tag">地球連邦軍(X)</span><span class="tag">突破力</span><span class="tag">赤色</span><span class="tag">フラッシュシステム</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="支援">支援</span>
+                <strong class="ms-name">フリーダムガンダム(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダムSEED</span>
+              <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダムSEED</li><li>機動戦士ガンダムSEED DESTINY</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">三隻同盟</span><span class="tag">一撃必殺</span><span class="tag">SEEDシリーズ</span><span class="tag">エース機</span><span class="tag">白色</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="耐久">耐久</span>
+                <strong class="ms-name">ジャスティスガンダム</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダムSEED</span>
+              <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">ライバル</span><span class="more-tags">ほか5件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダムSEED</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">ライバル</span><span class="tag">三隻同盟</span><span class="tag">一撃必殺</span><span class="tag">SEEDシリーズ</span><span class="tag">エース機</span><span class="tag">赤色</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="支援">支援</span>
+                <strong class="ms-name">プロヴィデンスガンダム</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダムSEED</span>
+              <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">ライバル</span><span class="more-tags">ほか5件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダムSEED</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">ライバル</span><span class="tag">ザフト</span><span class="tag">電光石火</span><span class="tag">SEEDシリーズ</span><span class="tag">指揮官機</span><span class="tag">黒色</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="耐久">耐久</span>
+                <strong class="ms-name">ガンダムアストレイ ゴールドフレーム天ミナ(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダムSEED ASTRAY</span>
+              <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">ライバル</span><span class="more-tags">ほか5件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダムSEED ASTRAY</li><li>機動戦士ガンダムSEED</li><li>機動戦士ガンダムSEED DESTINY</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">ライバル</span><span class="tag">オーブ</span><span class="tag">電光石火</span><span class="tag">SEEDシリーズ</span><span class="tag">指揮官機</span><span class="tag">金色</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="支援">支援</span>
+                <strong class="ms-name">スーパーハイペリオンガンダム</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダムSEED X ASTRAY</span>
+              <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">ライバル</span><span class="more-tags">ほか6件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダムSEED X ASTRAY</li><li>機動戦士ガンダムSEED ASTRAY</li><li>機動戦士ガンダムSEED</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">ライバル</span><span class="tag">試作機</span><span class="tag">地球連合軍</span><span class="tag">一撃必殺</span><span class="tag">SEEDシリーズ</span><span class="tag">白色</span><span class="tag">アルティメット</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="攻撃">攻撃</span>
+                <strong class="ms-name">ストライクフリーダムガンダム(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダムSEED DESTINY</span>
+              <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか6件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダムSEED DESTINY</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">オーブ</span><span class="tag">一撃必殺</span><span class="tag">SEEDシリーズ</span><span class="tag">エース機</span><span class="tag">白色</span><span class="tag">疾風迅雷</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="支援">支援</span>
+                <strong class="ms-name">フォースインパルスガンダム(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダムSEED DESTINY</span>
+              <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか6件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダムSEED DESTINY</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">ザフト</span><span class="tag">電光石火</span><span class="tag">SEEDシリーズ</span><span class="tag">エース機</span><span class="tag">白色</span><span class="tag">換装</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="攻撃">攻撃</span>
+                <strong class="ms-name">デスティニーガンダム(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダムSEED DESTINY</span>
+              <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダムSEED DESTINY</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">ザフト</span><span class="tag">堅牢</span><span class="tag">SEEDシリーズ</span><span class="tag">エース機</span><span class="tag">白色</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="耐久">耐久</span>
+                <strong class="ms-name">ガンダムアストレイ ゴールドフレームアマテラス</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダムSEED ASTRAY</span>
+              <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか6件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダムSEED ASTRAY</li><li>機動戦士ガンダムSEED DESTINY</li><li>機動戦士ガンダムSEED ASTRAY</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">オーブ</span><span class="tag">堅牢</span><span class="tag">SEEDシリーズ</span><span class="tag">指揮官機</span><span class="tag">白色</span><span class="tag">アルティメット</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="耐久">耐久</span>
+                <strong class="ms-name">ダブルオーライザー(最終決戦仕様)(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダム00</span>
+              <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダム00</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">ソレスタルビーイング</span><span class="tag">電光石火</span><span class="tag">エース機</span><span class="tag">白色</span><span class="tag">疾風迅雷</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="支援">支援</span>
+                <strong class="ms-name">ガンダムAGE-2 ノーマル(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダムAGE</span>
+              <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか8件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダムAGE</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">専用機</span><span class="tag">可変機</span><span class="tag">地球連邦軍(AGE)</span><span class="tag">電光石火</span><span class="tag">空中用</span><span class="tag">白色</span><span class="tag">換装</span><span class="tag">AGEシステム</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="耐久">耐久</span>
+                <strong class="ms-name">ガンダム・バルバトス(第6形態)(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダム 鉄血のオルフェンズ</span>
+              <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか6件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダム 鉄血のオルフェンズ</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">鉄華団</span><span class="tag">阿頼耶識システム</span><span class="tag">電光石火</span><span class="tag">エース機</span><span class="tag">白色</span><span class="tag">換装</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="支援">支援</span>
+                <strong class="ms-name">ガンダム・アスタロトリナシメント(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダム 鉄血のオルフェンズ 月鋼</span>
+              <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダム 鉄血のオルフェンズ 月鋼</li><li>機動戦士ガンダム 鉄血のオルフェンズ</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">専用機</span><span class="tag">突破力</span><span class="tag">傭兵</span><span class="tag">神経接続システム</span><span class="tag">白色</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="支援">支援</span>
+                <strong class="ms-name">ガンダム・エアリアル(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダム 水星の魔女</span>
+              <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか4件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダム 水星の魔女</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">専用機</span><span class="tag">GUND-ARM</span><span class="tag">一撃必殺</span><span class="tag">白色</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="耐久">耐久</span>
+                <strong class="ms-name">ガンダム・エアリアル改修型(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダム 水星の魔女</span>
+              <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダム 水星の魔女</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">専用機</span><span class="tag">GUND-ARM</span><span class="tag">一撃必殺</span><span class="tag">白色</span><span class="tag">不撓不屈</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="支援">支援</span>
+                <strong class="ms-name">ガンダム・ファラクト(Season2仕様)(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダム 水星の魔女</span>
+              <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">試作機</span><span class="more-tags">ほか4件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダム 水星の魔女</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">試作機</span><span class="tag">GUND-ARM</span><span class="tag">電光石火</span><span class="tag">黒色</span><span class="tag">不撓不屈</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="支援">支援</span>
+                <strong class="ms-name">ビルドストライクガンダム(フルパッケージ)(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">ガンダムビルドファイターズ</span>
+              <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか6件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>ガンダムビルドファイターズ</li><li>機動戦士ガンダムSEED</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">専用機</span><span class="tag">ガンプラ</span><span class="tag">突破力</span><span class="tag">SEEDシリーズ</span><span class="tag">白色</span><span class="tag">換装</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="支援">支援</span>
+                <strong class="ms-name">モンスターブラックドラゴン(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">SDガンダム外伝</span>
+              <span class="tag-overview"><span class="tag">ガンダム</span><span class="tag">ライバル</span><span class="tag">専用機</span><span class="more-tags">ほか4件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>SDガンダム外伝</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">ガンダム</span><span class="tag">ライバル</span><span class="tag">専用機</span><span class="tag">SDガンダム</span><span class="tag">堅牢</span><span class="tag">黒色</span><span class="tag">不撓不屈</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="支援">支援</span>
+                <strong class="ms-name">Zガンダム3号機P2型</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">GUNDAM EVOLVE</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか8件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>GUNDAM EVOLVE</li><li>機動戦士Zガンダム</li><li>劇場版 機動戦士Zガンダム</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">可変機</span><span class="tag">サイコミュ</span><span class="tag">エゥーゴ</span><span class="tag">突破力</span><span class="tag">ニュータイプ専用機</span><span class="tag">空中用</span><span class="tag">赤色</span><span class="tag">アルティメット</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="攻撃">攻撃</span>
+                <strong class="ms-name">キャスバル専用ガンダム</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダム ギレンの野望</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダム ギレンの野望</li><li>機動戦士ガンダム</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">専用機</span><span class="tag">ジオン公国軍</span><span class="tag">電光石火</span><span class="tag">赤色</span><span class="tag">アルティメット</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="支援">支援</span>
+                <strong class="ms-name">フェニックスガンダム(能力解放)(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">SDガンダム GGENERATION</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="more-tags">ほか7件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>SDガンダム GGENERATION</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">サイコミュ</span><span class="tag">G GENERATIONシリーズ</span><span class="tag">ナノスキン</span><span class="tag">突破力</span><span class="tag">エース機</span><span class="tag">空中用</span><span class="tag">白色</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="支援">支援</span>
+                <strong class="ms-name">ハルファスガンダム(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">SDガンダム GGENERATION</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="more-tags">ほか7件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>SDガンダム GGENERATION</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">専用機</span><span class="tag">サイコミュ</span><span class="tag">G GENERATIONシリーズ</span><span class="tag">ナノスキン</span><span class="tag">堅牢</span><span class="tag">空中用</span><span class="tag">疾風迅雷</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="攻撃">攻撃</span>
+                <strong class="ms-name">サイコ・ハロ(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">SDガンダム GGENERATION</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">オルタナティブシリーズ</span><span class="tag">サイコミュ</span><span class="more-tags">ほか4件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>SDガンダム GGENERATION</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">オルタナティブシリーズ</span><span class="tag">サイコミュ</span><span class="tag">G GENERATIONシリーズ</span><span class="tag">大型機</span><span class="tag">電光石火</span><span class="tag">黒色</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="支援">支援</span>
+                <strong class="ms-name">グレート・ジオング(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">SDガンダム GGENERATION</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">モビルアーマー</span><span class="more-tags">ほか7件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>SDガンダム GGENERATION</li><li>機動戦士ガンダム</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">モビルアーマー</span><span class="tag">サイコミュ</span><span class="tag">ジオン公国軍</span><span class="tag">G GENERATIONシリーズ</span><span class="tag">電光石火</span><span class="tag">ニュータイプ専用機</span><span class="tag">黒色</span><span class="tag">不撓不屈</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="支援">支援</span>
+                <strong class="ms-name">ガンダムアクエリアス</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">SDガンダム GGENERATION</span>
+              <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">試作機</span><span class="more-tags">ほか5件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>SDガンダム GGENERATION</li><li>新機動戦記ガンダムW</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">試作機</span><span class="tag">OZ</span><span class="tag">G GENERATIONシリーズ</span><span class="tag">一撃必殺</span><span class="tag">Wシリーズ</span><span class="tag">アルティメット</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="攻撃">攻撃</span>
+                <strong class="ms-name">ガンダムベルフェゴール</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">SDガンダム GGENERATION</span>
+              <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">地球連邦軍(X)</span><span class="more-tags">ほか6件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>SDガンダム GGENERATION</li><li>機動新世紀ガンダムX</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">地球連邦軍(X)</span><span class="tag">G GENERATIONシリーズ</span><span class="tag">堅牢</span><span class="tag">ニュータイプ専用機</span><span class="tag">白色</span><span class="tag">フラッシュシステム</span><span class="tag">アルティメット</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="耐久">耐久</span>
+                <strong class="ms-name">サイコ・ガンダムMk-III</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">GUNDAM BATTLE MASTER</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">モビルアーマー</span><span class="more-tags">ほか4件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>GUNDAM BATTLE MASTER</li><li>機動戦士Zガンダム</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">モビルアーマー</span><span class="tag">大型機</span><span class="tag">堅牢</span><span class="tag">黒色</span><span class="tag">アルティメット</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="支援">支援</span>
+                <strong class="ms-name">β・アジール</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">MSV</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">モビルアーマー</span><span class="more-tags">ほか6件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>MSV</li><li>機動戦士ガンダム 逆襲のシャア</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">モビルアーマー</span><span class="tag">サイコミュ</span><span class="tag">ネオ・ジオン</span><span class="tag">大型機</span><span class="tag">一撃必殺</span><span class="tag">赤色</span><span class="tag">アルティメット</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="支援">支援</span>
+                <strong class="ms-name">ガンダムスローネアイントゥルブレンツ</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダム00V</span>
+              <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">可変機</span><span class="more-tags">ほか7件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダム00V</li><li>機動戦士ガンダム00</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">可変機</span><span class="tag">試作機</span><span class="tag">ソレスタルビーイング</span><span class="tag">電光石火</span><span class="tag">空中用</span><span class="tag">黒色</span><span class="tag">疾風迅雷</span><span class="tag">アルティメット</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
+            </div>
+          </div>
+        </details>
+<details class="ms-card">
+          <summary>
+            <span class="summary-main">
+              <span class="summary-title-row">
+                <span class="unit-type" data-unit-type="支援">支援</span>
+                <strong class="ms-name">ビグ・ラング(EX)</strong>
+                <span class="rarity">UR</span>
+              </span>
+              <span class="primary-series">機動戦士ガンダム MS IGLOO</span>
+              <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
+            </span>
+            <span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span>
+          </summary>
+          <div class="card-details">
+            <div class="detail-section">
+              <h3>シリーズ一覧</h3>
+              <ul><li>機動戦士ガンダム MS IGLOO</li><li>機動戦士ガンダム</li></ul>
+            </div>
+            <div class="detail-section">
+              <h3>タグ一覧</h3>
+              <div class="tag-list"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">主人公</span><span class="tag">モビルアーマー</span><span class="tag">試作機</span><span class="tag">ジオン公国軍</span><span class="tag">堅牢</span><span class="tag">赤色</span></div>
+            </div>
+            <div class="detail-section">
+              <h3>備考</h3>
+              <p>5機体単位再読み取りで画像目視確認済み。</p>
             </div>
           </div>
         </details></div>
@@ -384,7 +2502,7 @@
       });
     })();
   </script>
-  <script id="records-data" type="application/json">[{"ms_id": "MS0001", "ms_name": "劉備ユニコーンガンダム(EX)", "rarity": "UR", "series": ["SDガンダムワールド 三国創傑伝"], "tags": ["ガンダム", "主人公", "専用機", "SDガンダム", "一撃必殺", "白色"], "source_image": "IMG_4029.PNG; IMG_4050.PNG", "confidence": "確認済み", "note": "スクショ確認済み。", "updated_at": "2026-06-02"}, {"ms_id": "MS0002", "ms_name": "ガンダム・キャリバーン(最終決戦時)(EX)", "rarity": "UR", "series": ["機動戦士ガンダム 水星の魔女"], "tags": ["オルタナティブシリーズ", "ガンダム", "主人公", "試作機", "GUND-ARM", "一撃必殺", "白色"], "source_image": "IMG_4034.PNG; IMG_4051.PNG", "confidence": "確認済み", "note": "スクショ確認済み。", "updated_at": "2026-06-02"}, {"ms_id": "MS0003", "ms_name": "ガンダム・バルバトスルプスレクス(EX)", "rarity": "UR", "series": ["機動戦士ガンダム 鉄血のオルフェンズ"], "tags": ["オルタナティブシリーズ", "ガンダム", "主人公", "専用機", "鉄華団", "阿頼耶識システム", "堅牢", "白色"], "source_image": "IMG_4038.PNG; IMG_4052.PNG", "confidence": "確認済み", "note": "スクショ確認済み。", "updated_at": "2026-06-02"}, {"ms_id": "MS0004", "ms_name": "ガンダムAGE-1 ノーマル(EX)", "rarity": "UR", "series": ["機動戦士ガンダムAGE"], "tags": ["オルタナティブシリーズ", "ガンダム", "主人公", "地球連邦軍(AGE)", "堅牢", "エース機", "白色", "換装", "AGEシステム"], "source_image": "IMG_4065.PNG; IMG_4064.PNG", "confidence": "確認済み", "note": "スクショ確認済み。", "updated_at": "2026-06-02"}, {"ms_id": "MS0005", "ms_name": "ガンダムエクシア(EX)", "rarity": "UR", "series": ["機動戦士ガンダム00"], "tags": ["オルタナティブシリーズ", "ガンダム", "主人公", "ソレスタルビーイング", "突破力", "エース機", "疾風迅雷"], "source_image": "IMG_4097.PNG; IMG_4096.PNG", "confidence": "確認済み", "note": "スクショ確認済み。", "updated_at": "2026-06-02"}, {"ms_id": "MS0006", "ms_name": "ガンダムアストレイ レッドフレーム改(EX)", "rarity": "UR", "series": ["機動戦士ガンダムSEED VS ASTRAY", "機動戦士ガンダムSEED ASTRAY", "機動戦士ガンダムSEED DESTINY"], "tags": ["オルタナティブシリーズ", "ガンダム", "主人公", "ライバル", "ジャンク屋組合", "突破力", "SEEDシリーズ", "エース機", "赤色"], "source_image": "IMG_4106.PNG; IMG_4105.PNG", "confidence": "確認済み", "note": "スクショ確認済み。シリーズ3件を個別登録。", "updated_at": "2026-06-02"}]</script>
+  <script id="records-data" type="application/json">[{"ms_id": "MS0001", "ms_name": "劉備ユニコーンガンダム(EX)", "rarity": "UR", "series": ["SDガンダムワールド 三国創傑伝"], "tags": ["ガンダム", "主人公", "専用機", "SDガンダム", "一撃必殺", "白色"], "source_image": "IMG_4029.PNG; IMG_4050.PNG", "confidence": "確認済み", "note": "スクショ読取ドラフト。シリーズは表示ロゴから転記。人間確認後に正本へ反映する。", "updated_at": "2026-06-02", "unit_type": "攻撃", "unit_type_confidence": "確認済み", "unit_type_note": "人間確認済み。タグmasterへ反映済み。"}, {"ms_id": "MS0002", "ms_name": "ガンダム・キャリバーン(最終決戦時)(EX)", "rarity": "UR", "series": ["機動戦士ガンダム 水星の魔女"], "tags": ["オルタナティブシリーズ", "ガンダム", "主人公", "試作機", "GUND-ARM", "一撃必殺", "白色"], "source_image": "IMG_4034.PNG; IMG_4051.PNG", "confidence": "確認済み", "note": "スクショ読取ドラフト。人間確認後に正本へ反映する。", "updated_at": "2026-06-02", "unit_type": "攻撃", "unit_type_confidence": "確認済み", "unit_type_note": "人間確認済み。タグmasterへ反映済み。"}, {"ms_id": "MS0003", "ms_name": "ガンダム・バルバトスルプスレクス(EX)", "rarity": "UR", "series": ["機動戦士ガンダム 鉄血のオルフェンズ"], "tags": ["オルタナティブシリーズ", "ガンダム", "主人公", "専用機", "鉄華団", "阿頼耶識システム", "堅牢", "白色"], "source_image": "IMG_4038.PNG; IMG_4052.PNG", "confidence": "確認済み", "note": "スクショ読取ドラフト。人間確認後に正本へ反映する。", "updated_at": "2026-06-02", "unit_type": "攻撃", "unit_type_confidence": "確認済み", "unit_type_note": "人間確認済み。タグmasterへ反映済み。"}, {"ms_id": "MS0004", "ms_name": "ガンダムAGE-1 ノーマル(EX)", "rarity": "UR", "series": ["機動戦士ガンダムAGE"], "tags": ["オルタナティブシリーズ", "ガンダム", "主人公", "地球連邦軍(AGE)", "堅牢", "エース機", "白色", "換装", "AGEシステム"], "source_image": "IMG_4065.PNG; IMG_4064.PNG", "confidence": "確認済み", "note": "スクショ上でタグ9件を確認。人間確認後に正本へ反映する。", "updated_at": "2026-06-02", "unit_type": "攻撃", "unit_type_confidence": "確認済み", "unit_type_note": "人間確認済み。タグmasterへ反映済み。"}, {"ms_id": "MS0005", "ms_name": "ガンダムエクシア(EX)", "rarity": "UR", "series": ["機動戦士ガンダム00"], "tags": ["オルタナティブシリーズ", "ガンダム", "主人公", "ソレスタルビーイング", "突破力", "エース機", "疾風迅雷"], "source_image": "IMG_4097.PNG; IMG_4096.PNG", "confidence": "確認済み", "note": "スクショ読取ドラフト。人間確認後に正本へ反映する。", "updated_at": "2026-06-02", "unit_type": "攻撃", "unit_type_confidence": "確認済み", "unit_type_note": "人間確認済み。タグmasterへ反映済み。"}, {"ms_id": "MS0006", "ms_name": "ガンダムアストレイ レッドフレーム改(EX)", "rarity": "UR", "series": ["機動戦士ガンダムSEED VS ASTRAY", "機動戦士ガンダムSEED ASTRAY", "機動戦士ガンダムSEED DESTINY"], "tags": ["オルタナティブシリーズ", "ガンダム", "主人公", "ライバル", "ジャンク屋組合", "突破力", "SEEDシリーズ", "エース機", "赤色"], "source_image": "IMG_4106.PNG; IMG_4105.PNG", "confidence": "確認済み", "note": "スクショ上でシリーズロゴ3件、タグ9件を確認。正本反映前に人間確認する。", "updated_at": "2026-06-02", "unit_type": "攻撃", "unit_type_confidence": "確認済み", "unit_type_note": "人間確認済み。タグmasterへ反映済み。"}, {"ms_id": "MS0007", "ms_name": "ガンダム(EX)", "rarity": "UR", "series": ["機動戦士ガンダム"], "tags": ["宇宙世紀シリーズ", "ガンダム", "主人公", "地球連邦軍(宇宙世紀)", "堅牢", "エース機", "白色", "疾風迅雷"], "source_image": "IMG_4247.PNG; IMG_4248.PNG", "confidence": "確認済み", "note": "人間確認済み。タグmasterへ反映済み。", "updated_at": "2026-06-02", "unit_type": "耐久", "unit_type_confidence": "確認済み", "unit_type_note": "人間確認済み。タグmasterへ反映済み。"}, {"ms_id": "MS0008", "ms_name": "ガンダムEz8(EX)", "rarity": "UR", "series": ["機動戦士ガンダム 第08MS小隊", "機動戦士ガンダム"], "tags": ["宇宙世紀シリーズ", "ガンダム", "主人公", "地球連邦軍(宇宙世紀)", "堅牢", "指揮官機", "白色", "地上用"], "source_image": "IMG_4249.PNG; IMG_4250.PNG", "confidence": "確認済み", "note": "人間確認済み。タグmasterへ反映済み。", "updated_at": "2026-06-02", "unit_type": "攻撃", "unit_type_confidence": "確認済み", "unit_type_note": "人間確認済み。タグmasterへ反映済み。"}, {"ms_id": "MS0009", "ms_name": "ジ・O(EX)", "rarity": "UR", "series": ["機動戦士Zガンダム", "機動戦士Zガンダム A New Translation"], "tags": ["宇宙世紀シリーズ", "モノアイ", "ライバル", "サイコミュ", "ティターンズ", "堅牢", "ニュータイプ専用機"], "source_image": "IMG_4251.PNG; IMG_4252.PNG", "confidence": "確認済み", "note": "人間確認済み。タグmasterへ反映済み。", "updated_at": "2026-06-02", "unit_type": "支援", "unit_type_confidence": "確認済み", "unit_type_note": "人間確認済み。タグmasterへ反映済み。"}, {"ms_id": "MS0010", "ms_name": "ジオング(EX)", "rarity": "UR", "series": ["機動戦士ガンダム"], "tags": ["宇宙世紀シリーズ", "モノアイ", "ライバル", "試作機", "サイコミュ", "ジオン公国軍", "堅牢"], "source_image": "IMG_4255.PNG; IMG_4256.PNG", "confidence": "確認済み", "note": "5機体再読み取りテストで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "攻撃", "unit_type_confidence": "高", "unit_type_note": "赤い攻撃アイコンを画像で確認。"}, {"ms_id": "MS0011", "ms_name": "シャア専用ザクII(THE ORIGIN版)(EX)", "rarity": "UR", "series": ["機動戦士ガンダム THE ORIGIN", "機動戦士ガンダム"], "tags": ["宇宙世紀シリーズ", "モノアイ", "主人公", "専用機", "ジオン公国軍", "突破力", "ザク", "赤色"], "source_image": "IMG_4257.PNG; IMG_4258.PNG", "confidence": "確認済み", "note": "5機体再読み取りテストで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "攻撃", "unit_type_confidence": "高", "unit_type_note": "赤い攻撃アイコンを画像で確認。"}, {"ms_id": "MS0012", "ms_name": "ケンプファー", "rarity": "UR", "series": ["機動戦士ガンダム0080 ポケットの中の戦争", "機動戦士ガンダム"], "tags": ["宇宙世紀シリーズ", "モノアイ", "試作機", "ジオン公国軍", "電光石火"], "source_image": "IMG_4259.PNG; IMG_4260.PNG", "confidence": "確認済み", "note": "5機体再読み取りテストで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "攻撃", "unit_type_confidence": "高", "unit_type_note": "赤い攻撃アイコンを画像で確認。"}, {"ms_id": "MS0013", "ms_name": "ブルーディスティニー1号機(EX)", "rarity": "UR", "series": ["機動戦士ガンダム外伝 THE BLUE DESTINY", "機動戦士ガンダム"], "tags": ["宇宙世紀シリーズ", "ガンダム", "主人公", "試作機", "地球連邦軍(宇宙世紀)", "一撃必殺", "ジム", "地上用"], "source_image": "IMG_4261.PNG; IMG_4262.PNG", "confidence": "確認済み", "note": "5機体再読み取りテストで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "攻撃", "unit_type_confidence": "高", "unit_type_note": "赤い攻撃アイコンを画像で確認。"}, {"ms_id": "MS0014", "ms_name": "フルアーマー・ガンダム(サンダーボルト版)(EX)", "rarity": "UR", "series": ["機動戦士ガンダム サンダーボルト", "機動戦士ガンダム"], "tags": ["宇宙世紀シリーズ", "ガンダム", "主人公", "ライバル", "地球連邦軍(宇宙世紀)", "電光石火", "エース機", "黒色"], "source_image": "IMG_4263.PNG; IMG_4264.PNG", "confidence": "確認済み", "note": "5機体再読み取りテストで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "耐久", "unit_type_confidence": "高", "unit_type_note": "青い耐久アイコンを画像で確認。"}, {"ms_id": "MS0015", "ms_name": "サイコ・ザク(EX)", "rarity": "UR", "series": ["機動戦士ガンダム サンダーボルト", "機動戦士ガンダム"], "tags": ["宇宙世紀シリーズ", "モノアイ", "主人公", "ライバル", "専用機", "ジオン公国軍", "リユース・サイコ・デバイス", "一撃必殺", "ザク", "赤色"], "source_image": "IMG_4265.PNG; IMG_4266.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "支援", "unit_type_confidence": "高", "unit_type_note": "黄色の支援アイコンを画像で確認。"}, {"ms_id": "MS0016", "ms_name": "アトラスガンダム(EX)", "rarity": "UR", "series": ["機動戦士ガンダム サンダーボルト", "機動戦士ガンダム"], "tags": ["宇宙世紀シリーズ", "ガンダム", "主人公", "ライバル", "試作機", "地球連邦軍(宇宙世紀)", "突破力", "水中用", "空中用", "白色", "疾風迅雷"], "source_image": "IMG_4267.PNG; IMG_4268.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "攻撃", "unit_type_confidence": "高", "unit_type_note": "赤い攻撃アイコンを画像で確認。"}, {"ms_id": "MS0017", "ms_name": "ガンダム試作2号機(EX)", "rarity": "UR", "series": ["機動戦士ガンダム0083 STARDUST MEMORY", "機動戦士ガンダム"], "tags": ["宇宙世紀シリーズ", "ガンダム", "ライバル", "試作機", "ジオン公国軍", "堅牢", "白色"], "source_image": "IMG_4269.PNG; IMG_4270.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "支援", "unit_type_confidence": "高", "unit_type_note": "黄色の支援アイコンを画像で確認。"}, {"ms_id": "MS0018", "ms_name": "ガンダム試作3号機(EX)", "rarity": "UR", "series": ["機動戦士ガンダム0083 STARDUST MEMORY", "機動戦士ガンダム"], "tags": ["宇宙世紀シリーズ", "ガンダム", "主人公", "モビルアーマー", "試作機", "地球連邦軍(宇宙世紀)", "突破力", "白色"], "source_image": "IMG_4271.PNG; IMG_4272.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "耐久", "unit_type_confidence": "高", "unit_type_note": "青い耐久アイコンを画像で確認。"}, {"ms_id": "MS0019", "ms_name": "ノイエ・ジール(EX)", "rarity": "UR", "series": ["機動戦士ガンダム0083 STARDUST MEMORY", "機動戦士ガンダム"], "tags": ["宇宙世紀シリーズ", "モノアイ", "ライバル", "モビルアーマー", "試作機", "ジオン公国軍", "突破力"], "source_image": "IMG_4273.PNG; IMG_4274.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "攻撃", "unit_type_confidence": "高", "unit_type_note": "赤い攻撃アイコンを画像で確認。"}, {"ms_id": "MS0020", "ms_name": "ストライカー・カスタム(EX)", "rarity": "UR", "series": ["機動戦士ガンダム KATANA", "機動戦士ガンダム"], "tags": ["宇宙世紀シリーズ", "ガンダム", "主人公", "地球連邦軍(宇宙世紀)", "一撃必殺", "エース機", "ジム"], "source_image": "IMG_4275.PNG; IMG_4276.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "攻撃", "unit_type_confidence": "高", "unit_type_note": "赤い攻撃アイコンを画像で確認。"}, {"ms_id": "MS0021", "ms_name": "ル・シーニュ(EX)", "rarity": "UR", "series": ["機動戦士ガンダム エコール・デュ・シエル", "機動戦士Zガンダム", "機動戦士ガンダムZZ"], "tags": ["宇宙世紀シリーズ", "ガンダム", "主人公", "サイコミュ", "エゥーゴ", "突破力", "ニュータイプ専用機", "白色"], "source_image": "IMG_4277.PNG; IMG_4278.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "支援", "unit_type_confidence": "高", "unit_type_note": "黄色の支援アイコンを画像で確認。"}, {"ms_id": "MS0022", "ms_name": "Zガンダム(EX)", "rarity": "UR", "series": ["機動戦士Zガンダム", "劇場版 機動戦士Zガンダム", "機動戦士ガンダムZZ"], "tags": ["宇宙世紀シリーズ", "ガンダム", "主人公", "可変機", "サイコミュ", "エゥーゴ", "電光石火", "ニュータイプ専用機", "空中用", "白色"], "source_image": "IMG_4279.PNG; IMG_4280.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "攻撃", "unit_type_confidence": "高", "unit_type_note": "赤い攻撃アイコンを画像で確認。"}, {"ms_id": "MS0023", "ms_name": "Ex-Sガンダム(EX)", "rarity": "UR", "series": ["ガンダム・センチネル", "機動戦士ガンダムZZ"], "tags": ["宇宙世紀シリーズ", "ガンダム", "主人公", "可変機", "試作機", "地球連邦軍(宇宙世紀)", "ALICE", "堅牢", "空中用", "白色", "疾風迅雷"], "source_image": "IMG_4281.PNG; IMG_4282.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "攻撃", "unit_type_confidence": "高", "unit_type_note": "赤い攻撃アイコンを画像で確認。"}, {"ms_id": "MS0024", "ms_name": "フルアーマーZZガンダム(EX)", "rarity": "UR", "series": ["機動戦士ガンダムZZ"], "tags": ["宇宙世紀シリーズ", "ガンダム", "主人公", "サイコミュ", "エゥーゴ", "突破力", "ニュータイプ専用機"], "source_image": "IMG_4283.PNG; IMG_4284.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "耐久", "unit_type_confidence": "高", "unit_type_note": "青い耐久アイコンを画像で確認。"}, {"ms_id": "MS0025", "ms_name": "キュベレイ(ZZ版)(EX)", "rarity": "UR", "series": ["機動戦士ガンダムZZ"], "tags": ["宇宙世紀シリーズ", "ライバル", "サイコミュ", "ネオ・ジオン", "突破力", "ニュータイプ専用機", "白色"], "source_image": "IMG_4285.PNG; IMG_4286.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "攻撃", "unit_type_confidence": "高", "unit_type_note": "赤い攻撃アイコンを画像で確認。"}, {"ms_id": "MS0026", "ms_name": "νガンダム(EX)", "rarity": "UR", "series": ["機動戦士ガンダム 逆襲のシャア"], "tags": ["宇宙世紀シリーズ", "ガンダム", "主人公", "サイコミュ", "地球連邦軍(宇宙世紀)", "電光石火", "ニュータイプ専用機", "白色", "疾風迅雷"], "source_image": "IMG_4287.PNG; IMG_4288.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "支援", "unit_type_confidence": "高", "unit_type_note": "黄色の支援アイコンを画像で確認。"}, {"ms_id": "MS0027", "ms_name": "サザビー(EX)", "rarity": "UR", "series": ["機動戦士ガンダム 逆襲のシャア"], "tags": ["宇宙世紀シリーズ", "モノアイ", "ライバル", "サイコミュ", "ネオ・ジオン", "一撃必殺", "ニュータイプ専用機", "赤色"], "source_image": "IMG_4289.PNG; IMG_4290.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "攻撃", "unit_type_confidence": "高", "unit_type_note": "赤い攻撃アイコンを画像で確認。"}, {"ms_id": "MS0028", "ms_name": "Hi-νガンダム(EX)", "rarity": "UR", "series": ["CCA-MSV", "機動戦士ガンダム 逆襲のシャア"], "tags": ["宇宙世紀シリーズ", "ガンダム", "主人公", "サイコミュ", "地球連邦軍(宇宙世紀)", "電光石火", "ニュータイプ専用機", "白色"], "source_image": "IMG_4291.PNG; IMG_4293.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "攻撃", "unit_type_confidence": "高", "unit_type_note": "赤い攻撃アイコンを画像で確認。"}, {"ms_id": "MS0029", "ms_name": "ナイチンゲール", "rarity": "UR", "series": ["CCA-MSV", "機動戦士ガンダム 逆襲のシャア"], "tags": ["宇宙世紀シリーズ", "モノアイ", "ライバル", "サイコミュ", "ネオ・ジオン", "一撃必殺", "ニュータイプ専用機", "赤色", "不撓不屈"], "source_image": "IMG_4294.PNG; IMG_4295.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "支援", "unit_type_confidence": "高", "unit_type_note": "黄色の支援アイコンを画像で確認。"}, {"ms_id": "MS0030", "ms_name": "νガンダム(ダブル・フィン・ファンネル装備型)(EX)", "rarity": "UR", "series": ["CCA-MSV", "機動戦士ガンダム 逆襲のシャア"], "tags": ["宇宙世紀シリーズ", "ガンダム", "主人公", "サイコミュ", "地球連邦軍(宇宙世紀)", "突破力", "ニュータイプ専用機", "白色", "不撓不屈"], "source_image": "IMG_4296.PNG; IMG_4297.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "耐久", "unit_type_confidence": "高", "unit_type_note": "青い耐久アイコンを画像で確認。"}, {"ms_id": "MS0031", "ms_name": "ユニコーンガンダム(デストロイモード)(EX)", "rarity": "UR", "series": ["機動戦士ガンダムUC"], "tags": ["宇宙世紀シリーズ", "ガンダム", "主人公", "サイコミュ", "地球連邦軍(宇宙世紀)", "NT-D", "電光石火", "ニュータイプ専用機", "赤色", "不撓不屈"], "source_image": "IMG_4298.PNG; IMG_4299.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "攻撃", "unit_type_confidence": "高", "unit_type_note": "赤い攻撃アイコンを画像で確認。"}, {"ms_id": "MS0032", "ms_name": "バンシィ・ノルン(デストロイモード)(EX)", "rarity": "UR", "series": ["機動戦士ガンダムUC"], "tags": ["宇宙世紀シリーズ", "ガンダム", "ライバル", "試作機", "サイコミュ", "地球連邦軍(宇宙世紀)", "NT-D", "堅牢", "金色"], "source_image": "IMG_4300.PNG; IMG_4301.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "耐久", "unit_type_confidence": "高", "unit_type_note": "青い耐久アイコンを画像で確認。"}, {"ms_id": "MS0033", "ms_name": "シナンジュ(EX)", "rarity": "UR", "series": ["機動戦士ガンダムUC"], "tags": ["宇宙世紀シリーズ", "モノアイ", "ライバル", "サイコミュ", "ネオ・ジオン", "一撃必殺", "指揮官機", "赤色", "疾風迅雷"], "source_image": "IMG_4302.PNG; IMG_4303.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "支援", "unit_type_confidence": "高", "unit_type_note": "黄色の支援アイコンを画像で確認。"}, {"ms_id": "MS0034", "ms_name": "ユニコーンガンダム(デストロイモード/覚醒)(EX)", "rarity": "UR", "series": ["機動戦士ガンダムUC"], "tags": ["宇宙世紀シリーズ", "ガンダム", "主人公", "サイコミュ", "地球連邦軍(宇宙世紀)", "NT-D", "突破力", "エース機"], "source_image": "IMG_4304.PNG; IMG_4305.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "支援", "unit_type_confidence": "高", "unit_type_note": "黄色の支援アイコンを画像で確認。"}, {"ms_id": "MS0035", "ms_name": "ガンダムデルタカイ", "rarity": "UR", "series": ["MSV", "機動戦士ガンダムUC"], "tags": ["宇宙世紀シリーズ", "ガンダム", "主人公", "可変機", "サイコミュ", "地球連邦軍(宇宙世紀)", "突破力", "エース機", "空中用", "白色", "アルティメット"], "source_image": "IMG_4306.PNG; IMG_4307.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "攻撃", "unit_type_confidence": "高", "unit_type_note": "赤い攻撃アイコンを確認。"}, {"ms_id": "MS0036", "ms_name": "ナラティブガンダムA装備(EX)", "rarity": "UR", "series": ["機動戦士ガンダムNT", "機動戦士ガンダムUC"], "tags": ["宇宙世紀シリーズ", "ガンダム", "主人公", "モビルアーマー", "サイコミュ", "地球連邦軍(宇宙世紀)", "NT-D", "大型機", "堅牢", "白色"], "source_image": "IMG_4308.PNG; IMG_4309.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "耐久", "unit_type_confidence": "高", "unit_type_note": "青い耐久アイコンを確認。"}, {"ms_id": "MS0037", "ms_name": "ユニコーンガンダム3号機 フェネクス(デストロイモード)(EX)", "rarity": "UR", "series": ["機動戦士ガンダムNT", "機動戦士ガンダムUC"], "tags": ["宇宙世紀シリーズ", "ガンダム", "主人公", "サイコミュ", "地球連邦軍(宇宙世紀)", "NT-D", "一撃必殺", "ニュータイプ専用機", "金色", "不撓不屈"], "source_image": "IMG_4310.PNG; IMG_4311.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "攻撃", "unit_type_confidence": "高", "unit_type_note": "赤い攻撃アイコンを確認。"}, {"ms_id": "MS0038", "ms_name": "Ξガンダム(EX)", "rarity": "UR", "series": ["機動戦士ガンダム 閃光のハサウェイ", "機動戦士ガンダム 逆襲のシャア"], "tags": ["宇宙世紀シリーズ", "ガンダム", "主人公", "サイコミュ", "電光石火", "エース機", "空中用", "白色", "マフティー"], "source_image": "IMG_4312.PNG; IMG_4313.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "攻撃", "unit_type_confidence": "高", "unit_type_note": "赤い攻撃アイコンを確認。"}, {"ms_id": "MS0039", "ms_name": "ペーネロペー(EX)", "rarity": "UR", "series": ["機動戦士ガンダム 閃光のハサウェイ", "機動戦士ガンダム 逆襲のシャア"], "tags": ["宇宙世紀シリーズ", "ガンダム", "ライバル", "可変機", "試作機", "サイコミュ", "地球連邦軍(宇宙世紀)", "堅牢", "空中用", "白色"], "source_image": "IMG_4314.PNG; IMG_4315.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "耐久", "unit_type_confidence": "高", "unit_type_note": "青い耐久アイコンを確認。"}, {"ms_id": "MS0040", "ms_name": "ガンダムF91", "rarity": "UR", "series": ["機動戦士ガンダムF91"], "tags": ["宇宙世紀シリーズ", "ガンダム", "主人公", "サイコミュ", "地球連邦軍(宇宙世紀)", "突破力", "エース機", "白色"], "source_image": "IMG_4316.PNG; IMG_4317.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "耐久", "unit_type_confidence": "高", "unit_type_note": "青い耐久アイコンを確認。"}, {"ms_id": "MS0041", "ms_name": "クロスボーン・ガンダムX1改(EX)", "rarity": "UR", "series": ["機動戦士クロスボーン・ガンダム"], "tags": ["宇宙世紀シリーズ", "ガンダム", "主人公", "堅牢", "宇宙海賊クロスボーン", "エース機", "白色"], "source_image": "IMG_4318.PNG; IMG_4319.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "攻撃", "unit_type_confidence": "高", "unit_type_note": "赤い攻撃アイコンを確認。"}, {"ms_id": "MS0042", "ms_name": "マスターガンダム(EX)", "rarity": "UR", "series": ["機動武闘伝Gガンダム"], "tags": ["オルタナティブシリーズ", "ガンダム", "ライバル", "専用機", "デビルガンダム軍団", "モビル・トレース・システム", "電光石火", "黒色"], "source_image": "IMG_4320.PNG; IMG_4321.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "攻撃", "unit_type_confidence": "高", "unit_type_note": "赤い攻撃アイコンを確認。"}, {"ms_id": "MS0043", "ms_name": "ゴッドガンダム(EX)", "rarity": "UR", "series": ["機動武闘伝Gガンダム"], "tags": ["オルタナティブシリーズ", "ガンダム", "主人公", "各国代表", "モビル・トレース・システム", "突破力", "エース機", "明鏡止水", "白色"], "source_image": "IMG_4322.PNG; IMG_4323.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "攻撃", "unit_type_confidence": "高", "unit_type_note": "赤い攻撃アイコンを確認。"}, {"ms_id": "MS0044", "ms_name": "ウイングガンダムゼロ(EW版)(EX)", "rarity": "UR", "series": ["新機動戦記ガンダムW Endless Waltz", "新機動戦記ガンダムW"], "tags": ["オルタナティブシリーズ", "ガンダム", "主人公", "専用機", "オペレーション・メテオ", "ゼロシステム", "突破力", "Wシリーズ", "白色", "不撓不屈"], "source_image": "IMG_4324.PNG; IMG_4325.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "攻撃", "unit_type_confidence": "高", "unit_type_note": "赤い攻撃アイコンを確認。"}, {"ms_id": "MS0045", "ms_name": "ガンダムデスサイズヘル(EW版)(EX)", "rarity": "UR", "series": ["新機動戦記ガンダムW Endless Waltz", "新機動戦記ガンダムW"], "tags": ["オルタナティブシリーズ", "ガンダム", "専用機", "オペレーション・メテオ", "堅牢", "Wシリーズ", "黒色", "不撓不屈"], "source_image": "IMG_4326.PNG; IMG_4327.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "耐久", "unit_type_confidence": "高", "unit_type_note": "青い耐久アイコンを確認。"}, {"ms_id": "MS0046", "ms_name": "トールギスIII", "rarity": "UR", "series": ["新機動戦記ガンダムW Endless Waltz", "新機動戦記ガンダムW"], "tags": ["オルタナティブシリーズ", "試作機", "一撃必殺", "Wシリーズ", "空中用", "白色", "不撓不屈"], "source_image": "IMG_4328.PNG; IMG_4329.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "支援", "unit_type_confidence": "高", "unit_type_note": "黄色の支援アイコンを確認。"}, {"ms_id": "MS0047", "ms_name": "ガンダムDX(EX)", "rarity": "UR", "series": ["機動新世紀ガンダムX"], "tags": ["オルタナティブシリーズ", "ガンダム", "主人公", "フリーデン", "一撃必殺", "エース機", "白色", "フラッシュシステム"], "source_image": "IMG_4330.PNG; IMG_4331.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "攻撃", "unit_type_confidence": "高", "unit_type_note": "赤い攻撃アイコンを確認。"}, {"ms_id": "MS0048", "ms_name": "ガンダムヴァサーゴチェストブレイク(EX)", "rarity": "UR", "series": ["機動新世紀ガンダムX"], "tags": ["オルタナティブシリーズ", "ガンダム", "ライバル", "専用機", "地球連邦軍(X)", "突破力", "赤色", "フラッシュシステム"], "source_image": "IMG_4332.PNG; IMG_4333.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "支援", "unit_type_confidence": "高", "unit_type_note": "黄色の支援アイコンを確認。"}, {"ms_id": "MS0049", "ms_name": "フリーダムガンダム(EX)", "rarity": "UR", "series": ["機動戦士ガンダムSEED", "機動戦士ガンダムSEED DESTINY"], "tags": ["オルタナティブシリーズ", "ガンダム", "主人公", "三隻同盟", "一撃必殺", "SEEDシリーズ", "エース機", "白色"], "source_image": "IMG_4334.PNG; IMG_4335.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "支援", "unit_type_confidence": "高", "unit_type_note": "黄色の支援アイコンを確認。"}, {"ms_id": "MS0050", "ms_name": "ジャスティスガンダム", "rarity": "UR", "series": ["機動戦士ガンダムSEED"], "tags": ["オルタナティブシリーズ", "ガンダム", "ライバル", "三隻同盟", "一撃必殺", "SEEDシリーズ", "エース機", "赤色"], "source_image": "IMG_4336.PNG; IMG_4337.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "耐久", "unit_type_confidence": "高", "unit_type_note": "青い耐久アイコンを確認。"}, {"ms_id": "MS0051", "ms_name": "プロヴィデンスガンダム", "rarity": "UR", "series": ["機動戦士ガンダムSEED"], "tags": ["オルタナティブシリーズ", "ガンダム", "ライバル", "ザフト", "電光石火", "SEEDシリーズ", "指揮官機", "黒色"], "source_image": "IMG_4338.PNG; IMG_4339.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "支援", "unit_type_confidence": "高", "unit_type_note": "黄色の支援アイコンを確認。"}, {"ms_id": "MS0052", "ms_name": "ガンダムアストレイ ゴールドフレーム天ミナ(EX)", "rarity": "UR", "series": ["機動戦士ガンダムSEED ASTRAY", "機動戦士ガンダムSEED", "機動戦士ガンダムSEED DESTINY"], "tags": ["オルタナティブシリーズ", "ガンダム", "ライバル", "オーブ", "電光石火", "SEEDシリーズ", "指揮官機", "金色"], "source_image": "IMG_4340.PNG; IMG_4341.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "耐久", "unit_type_confidence": "高", "unit_type_note": "青い耐久アイコンを確認。"}, {"ms_id": "MS0053", "ms_name": "スーパーハイペリオンガンダム", "rarity": "UR", "series": ["機動戦士ガンダムSEED X ASTRAY", "機動戦士ガンダムSEED ASTRAY", "機動戦士ガンダムSEED"], "tags": ["オルタナティブシリーズ", "ガンダム", "ライバル", "試作機", "地球連合軍", "一撃必殺", "SEEDシリーズ", "白色", "アルティメット"], "source_image": "IMG_4342.PNG; IMG_4343.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "支援", "unit_type_confidence": "高", "unit_type_note": "黄色の支援アイコンを確認。"}, {"ms_id": "MS0054", "ms_name": "ストライクフリーダムガンダム(EX)", "rarity": "UR", "series": ["機動戦士ガンダムSEED DESTINY"], "tags": ["オルタナティブシリーズ", "ガンダム", "主人公", "オーブ", "一撃必殺", "SEEDシリーズ", "エース機", "白色", "疾風迅雷"], "source_image": "IMG_4344.PNG; IMG_4345.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "攻撃", "unit_type_confidence": "高", "unit_type_note": "赤い攻撃アイコンを確認。"}, {"ms_id": "MS0055", "ms_name": "フォースインパルスガンダム(EX)", "rarity": "UR", "series": ["機動戦士ガンダムSEED DESTINY"], "tags": ["オルタナティブシリーズ", "ガンダム", "主人公", "ザフト", "電光石火", "SEEDシリーズ", "エース機", "白色", "換装"], "source_image": "IMG_4346.PNG; IMG_4347.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "支援", "unit_type_confidence": "高", "unit_type_note": "黄色の支援アイコンを確認。"}, {"ms_id": "MS0056", "ms_name": "デスティニーガンダム(EX)", "rarity": "UR", "series": ["機動戦士ガンダムSEED DESTINY"], "tags": ["オルタナティブシリーズ", "ガンダム", "主人公", "ザフト", "堅牢", "SEEDシリーズ", "エース機", "白色"], "source_image": "IMG_4348.PNG; IMG_4349.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "攻撃", "unit_type_confidence": "高", "unit_type_note": "赤い攻撃アイコンを確認。"}, {"ms_id": "MS0057", "ms_name": "ガンダムアストレイ ゴールドフレームアマテラス", "rarity": "UR", "series": ["機動戦士ガンダムSEED ASTRAY", "機動戦士ガンダムSEED DESTINY", "機動戦士ガンダムSEED ASTRAY"], "tags": ["オルタナティブシリーズ", "ガンダム", "主人公", "オーブ", "堅牢", "SEEDシリーズ", "指揮官機", "白色", "アルティメット"], "source_image": "IMG_4352.PNG; IMG_4353.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "耐久", "unit_type_confidence": "高", "unit_type_note": "青い耐久アイコンを確認。"}, {"ms_id": "MS0058", "ms_name": "ダブルオーライザー(最終決戦仕様)(EX)", "rarity": "UR", "series": ["機動戦士ガンダム00"], "tags": ["オルタナティブシリーズ", "ガンダム", "主人公", "ソレスタルビーイング", "電光石火", "エース機", "白色", "疾風迅雷"], "source_image": "IMG_4354.PNG; IMG_4355.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "耐久", "unit_type_confidence": "高", "unit_type_note": "青い耐久アイコンを確認。"}, {"ms_id": "MS0059", "ms_name": "ガンダムAGE-2 ノーマル(EX)", "rarity": "UR", "series": ["機動戦士ガンダムAGE"], "tags": ["オルタナティブシリーズ", "ガンダム", "主人公", "専用機", "可変機", "地球連邦軍(AGE)", "電光石火", "空中用", "白色", "換装", "AGEシステム"], "source_image": "IMG_4358.PNG; IMG_4359.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "支援", "unit_type_confidence": "高", "unit_type_note": "黄色の支援アイコンを確認。"}, {"ms_id": "MS0060", "ms_name": "ガンダム・バルバトス(第6形態)(EX)", "rarity": "UR", "series": ["機動戦士ガンダム 鉄血のオルフェンズ"], "tags": ["オルタナティブシリーズ", "ガンダム", "主人公", "鉄華団", "阿頼耶識システム", "電光石火", "エース機", "白色", "換装"], "source_image": "IMG_4360.PNG; IMG_4361.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "耐久", "unit_type_confidence": "高", "unit_type_note": "青い耐久アイコンを確認。"}, {"ms_id": "MS0061", "ms_name": "ガンダム・アスタロトリナシメント(EX)", "rarity": "UR", "series": ["機動戦士ガンダム 鉄血のオルフェンズ 月鋼", "機動戦士ガンダム 鉄血のオルフェンズ"], "tags": ["オルタナティブシリーズ", "ガンダム", "主人公", "専用機", "突破力", "傭兵", "神経接続システム", "白色"], "source_image": "IMG_4364.PNG; IMG_4365.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "支援", "unit_type_confidence": "高", "unit_type_note": "黄色の支援アイコンを確認。"}, {"ms_id": "MS0062", "ms_name": "ガンダム・エアリアル(EX)", "rarity": "UR", "series": ["機動戦士ガンダム 水星の魔女"], "tags": ["オルタナティブシリーズ", "ガンダム", "主人公", "専用機", "GUND-ARM", "一撃必殺", "白色"], "source_image": "IMG_4366.PNG; IMG_4367.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "支援", "unit_type_confidence": "高", "unit_type_note": "黄色の支援アイコンを確認。"}, {"ms_id": "MS0063", "ms_name": "ガンダム・エアリアル改修型(EX)", "rarity": "UR", "series": ["機動戦士ガンダム 水星の魔女"], "tags": ["オルタナティブシリーズ", "ガンダム", "主人公", "専用機", "GUND-ARM", "一撃必殺", "白色", "不撓不屈"], "source_image": "IMG_4368.PNG; IMG_4369.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "耐久", "unit_type_confidence": "高", "unit_type_note": "青い耐久アイコンを確認。"}, {"ms_id": "MS0064", "ms_name": "ガンダム・ファラクト(Season2仕様)(EX)", "rarity": "UR", "series": ["機動戦士ガンダム 水星の魔女"], "tags": ["オルタナティブシリーズ", "ガンダム", "試作機", "GUND-ARM", "電光石火", "黒色", "不撓不屈"], "source_image": "IMG_4370.PNG; IMG_4371.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "支援", "unit_type_confidence": "高", "unit_type_note": "黄色の支援アイコンを確認。"}, {"ms_id": "MS0065", "ms_name": "ビルドストライクガンダム(フルパッケージ)(EX)", "rarity": "UR", "series": ["ガンダムビルドファイターズ", "機動戦士ガンダムSEED"], "tags": ["オルタナティブシリーズ", "ガンダム", "主人公", "専用機", "ガンプラ", "突破力", "SEEDシリーズ", "白色", "換装"], "source_image": "IMG_4372.PNG; IMG_4373.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "支援", "unit_type_confidence": "高", "unit_type_note": "黄色の支援アイコンを確認。"}, {"ms_id": "MS0066", "ms_name": "モンスターブラックドラゴン(EX)", "rarity": "UR", "series": ["SDガンダム外伝"], "tags": ["ガンダム", "ライバル", "専用機", "SDガンダム", "堅牢", "黒色", "不撓不屈"], "source_image": "IMG_4374.PNG; IMG_4375.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "支援", "unit_type_confidence": "高", "unit_type_note": "黄色の支援アイコンを確認。"}, {"ms_id": "MS0067", "ms_name": "Zガンダム3号機P2型", "rarity": "UR", "series": ["GUNDAM EVOLVE", "機動戦士Zガンダム", "劇場版 機動戦士Zガンダム"], "tags": ["宇宙世紀シリーズ", "ガンダム", "主人公", "可変機", "サイコミュ", "エゥーゴ", "突破力", "ニュータイプ専用機", "空中用", "赤色", "アルティメット"], "source_image": "IMG_4378.PNG; IMG_4379.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "支援", "unit_type_confidence": "高", "unit_type_note": "黄色の支援アイコンを確認。"}, {"ms_id": "MS0068", "ms_name": "キャスバル専用ガンダム", "rarity": "UR", "series": ["機動戦士ガンダム ギレンの野望", "機動戦士ガンダム"], "tags": ["宇宙世紀シリーズ", "ガンダム", "主人公", "専用機", "ジオン公国軍", "電光石火", "赤色", "アルティメット"], "source_image": "IMG_4380.PNG; IMG_4381.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "攻撃", "unit_type_confidence": "高", "unit_type_note": "赤い攻撃アイコンを確認。"}, {"ms_id": "MS0069", "ms_name": "フェニックスガンダム(能力解放)(EX)", "rarity": "UR", "series": ["SDガンダム GGENERATION"], "tags": ["宇宙世紀シリーズ", "オルタナティブシリーズ", "ガンダム", "サイコミュ", "G GENERATIONシリーズ", "ナノスキン", "突破力", "エース機", "空中用", "白色"], "source_image": "IMG_4382.PNG; IMG_4383.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "支援", "unit_type_confidence": "高", "unit_type_note": "黄色の支援アイコンを確認。"}, {"ms_id": "MS0070", "ms_name": "ハルファスガンダム(EX)", "rarity": "UR", "series": ["SDガンダム GGENERATION"], "tags": ["宇宙世紀シリーズ", "オルタナティブシリーズ", "ガンダム", "専用機", "サイコミュ", "G GENERATIONシリーズ", "ナノスキン", "堅牢", "空中用", "疾風迅雷"], "source_image": "IMG_4384.PNG; IMG_4385.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "支援", "unit_type_confidence": "高", "unit_type_note": "黄色の支援アイコンを確認。"}, {"ms_id": "MS0071", "ms_name": "サイコ・ハロ(EX)", "rarity": "UR", "series": ["SDガンダム GGENERATION"], "tags": ["宇宙世紀シリーズ", "オルタナティブシリーズ", "サイコミュ", "G GENERATIONシリーズ", "大型機", "電光石火", "黒色"], "source_image": "IMG_4386.PNG; IMG_4387.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "攻撃", "unit_type_confidence": "高", "unit_type_note": "赤い攻撃アイコンを確認。"}, {"ms_id": "MS0072", "ms_name": "グレート・ジオング(EX)", "rarity": "UR", "series": ["SDガンダム GGENERATION", "機動戦士ガンダム"], "tags": ["宇宙世紀シリーズ", "モノアイ", "モビルアーマー", "サイコミュ", "ジオン公国軍", "G GENERATIONシリーズ", "電光石火", "ニュータイプ専用機", "黒色", "不撓不屈"], "source_image": "IMG_4388.PNG; IMG_4389.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "支援", "unit_type_confidence": "高", "unit_type_note": "黄色の支援アイコンを確認。"}, {"ms_id": "MS0073", "ms_name": "ガンダムアクエリアス", "rarity": "UR", "series": ["SDガンダム GGENERATION", "新機動戦記ガンダムW"], "tags": ["オルタナティブシリーズ", "ガンダム", "試作機", "OZ", "G GENERATIONシリーズ", "一撃必殺", "Wシリーズ", "アルティメット"], "source_image": "IMG_4390.PNG; IMG_4391.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "支援", "unit_type_confidence": "高", "unit_type_note": "黄色の支援アイコンを確認。"}, {"ms_id": "MS0074", "ms_name": "ガンダムベルフェゴール", "rarity": "UR", "series": ["SDガンダム GGENERATION", "機動新世紀ガンダムX"], "tags": ["オルタナティブシリーズ", "ガンダム", "地球連邦軍(X)", "G GENERATIONシリーズ", "堅牢", "ニュータイプ専用機", "白色", "フラッシュシステム", "アルティメット"], "source_image": "IMG_4392.PNG; IMG_4393.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "攻撃", "unit_type_confidence": "高", "unit_type_note": "赤い攻撃アイコンを確認。"}, {"ms_id": "MS0075", "ms_name": "サイコ・ガンダムMk-III", "rarity": "UR", "series": ["GUNDAM BATTLE MASTER", "機動戦士Zガンダム"], "tags": ["宇宙世紀シリーズ", "ガンダム", "モビルアーマー", "大型機", "堅牢", "黒色", "アルティメット"], "source_image": "IMG_4394.PNG; IMG_4395.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "耐久", "unit_type_confidence": "高", "unit_type_note": "青い耐久アイコンを確認。"}, {"ms_id": "MS0076", "ms_name": "β・アジール", "rarity": "UR", "series": ["MSV", "機動戦士ガンダム 逆襲のシャア"], "tags": ["宇宙世紀シリーズ", "モノアイ", "モビルアーマー", "サイコミュ", "ネオ・ジオン", "大型機", "一撃必殺", "赤色", "アルティメット"], "source_image": "IMG_4396.PNG; IMG_4397.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "支援", "unit_type_confidence": "高", "unit_type_note": "黄色の支援アイコンを確認。"}, {"ms_id": "MS0077", "ms_name": "ガンダムスローネアイントゥルブレンツ", "rarity": "UR", "series": ["機動戦士ガンダム00V", "機動戦士ガンダム00"], "tags": ["オルタナティブシリーズ", "ガンダム", "可変機", "試作機", "ソレスタルビーイング", "電光石火", "空中用", "黒色", "疾風迅雷", "アルティメット"], "source_image": "IMG_4398.PNG; IMG_4399.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "支援", "unit_type_confidence": "高", "unit_type_note": "黄色の支援アイコンを確認。"}, {"ms_id": "MS0078", "ms_name": "ビグ・ラング(EX)", "rarity": "UR", "series": ["機動戦士ガンダム MS IGLOO", "機動戦士ガンダム"], "tags": ["宇宙世紀シリーズ", "モノアイ", "主人公", "モビルアーマー", "試作機", "ジオン公国軍", "堅牢", "赤色"], "source_image": "IMG_4400.PNG; IMG_4401.PNG", "confidence": "確認済み", "note": "5機体単位再読み取りで画像目視確認済み。", "updated_at": "2026-06-03", "unit_type": "支援", "unit_type_confidence": "高", "unit_type_note": "黄色の支援アイコンを確認。"}]</script>
   <script>
     (function () {
       var message = document.getElementById("app-message");
@@ -429,7 +2547,7 @@
             : "";
           return '<details class="ms-card">'
             + '<summary><span class="summary-main">'
-            + '<span class="summary-title-row"><strong class="ms-name">' + escapeHtml(record.ms_name) + '</strong><span class="rarity">' + escapeHtml(record.rarity) + '</span></span>'
+            + '<span class="summary-title-row"><span class="unit-type" data-unit-type="' + escapeHtml(record.unit_type) + '">' + escapeHtml(record.unit_type) + '</span><strong class="ms-name">' + escapeHtml(record.ms_name) + '</strong><span class="rarity">' + escapeHtml(record.rarity) + '</span></span>'
             + '<span class="primary-series">' + escapeHtml(record.series[0] || "シリーズ未登録") + '</span>'
             + '<span class="tag-overview">' + overview + remaining + '</span>'
             + '</span><span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span></summary>'
@@ -438,17 +2556,20 @@
             + noteBlock + '</div></details>';
         }
         function updateResults() {
-          var selected = filterInputs.filter(function (input) { return input.checked; });
+          var selectedConditions = filterInputs.filter(function (input) { return input.checked && input.dataset.filterKind !== "unit_type"; });
+          var selectedTypes = filterInputs.filter(function (input) { return input.checked && input.dataset.filterKind === "unit_type"; });
           var checkedMode = document.querySelector('input[name="mode"]:checked');
           var mode = checkedMode ? checkedMode.value : "and";
           var term = keyword.value.trim().toLocaleLowerCase("ja");
           var filtered = records.filter(function (record) {
-            var conditionMatch = selected.length === 0
+            var conditionMatch = selectedConditions.length === 0
               || (mode === "and"
-                ? selected.every(function (input) { return matchesFilter(record, input); })
-                : selected.some(function (input) { return matchesFilter(record, input); }));
+                ? selectedConditions.every(function (input) { return matchesFilter(record, input); })
+                : selectedConditions.some(function (input) { return matchesFilter(record, input); }));
+            var typeMatch = selectedTypes.length === 0
+              || selectedTypes.some(function (input) { return record.unit_type === input.value; });
             var keywordMatch = !term || String(record.ms_name || "").toLocaleLowerCase("ja").indexOf(term) !== -1;
-            return conditionMatch && keywordMatch;
+            return typeMatch && conditionMatch && keywordMatch;
           });
           resultCount.textContent = filtered.length + "件";
           results.innerHTML = filtered.length
