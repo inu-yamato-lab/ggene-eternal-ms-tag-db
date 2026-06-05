@@ -41,6 +41,7 @@
     input[type="search"] { width: 100%; border: 1px solid var(--line); border-radius: 9px; padding: 10px 11px; font: inherit; }
     .tag-filter-field { display: grid; gap: 5px; font-size: .86rem; color: var(--muted); }
     .type-filter { display: grid; gap: 7px; }
+    .always-filters { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
     .mode { display: flex; gap: 10px; align-items: center; min-height: 40px; }
     button { border: 1px solid var(--accent); border-radius: 9px; background: var(--accent); color: white; padding: 10px 14px; font: inherit; cursor: pointer; }
     button.secondary { background: white; color: var(--accent); }
@@ -69,6 +70,9 @@
     .summary-title-row { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
     .ms-name { font-size: 1rem; overflow-wrap: anywhere; }
     .rarity { display: inline-block; border-radius: 999px; padding: 3px 8px; background: var(--accent-soft); color: #163b79; font-size: .78rem; font-weight: 700; }
+    .rarity[data-rarity="UR"] { background: #efe7ff; color: #5f2fb2; }
+    .rarity[data-rarity="SSR"] { background: #fff1cc; color: #8a5a00; }
+    .rarity[data-rarity="SR"] { background: #e7f7ff; color: #075985; }
     .unit-type { display: inline-block; border-radius: 999px; padding: 3px 8px; background: #eef1f5; color: #475467; font-size: .78rem; font-weight: 700; }
     .unit-type[data-unit-type="攻撃"] { background: #fff0f0; color: #a62b2b; }
     .unit-type[data-unit-type="耐久"] { background: #edf7ee; color: #27713a; }
@@ -99,6 +103,7 @@
       .panel { border-radius: 11px; padding: 12px; }
       .filter-grid { display: block; }
       .filter-grid > details + details { margin-top: 10px; }
+      .always-filters { grid-template-columns: 1fr; gap: 10px; }
       .filter-group summary { padding: 10px; }
       .filter-content { padding: 10px; }
       .chip-list { gap: 6px; }
@@ -262,11 +267,17 @@
           </div>
         </details>
       </div>
-      <div class="type-filter">
-        <h2>タイプ</h2>
-        <div class="chip-list"><label class="filter-chip"><input type="checkbox" data-filter-kind="unit_type" value="攻撃"> <span>攻撃</span></label>
+      <div class="always-filters">
+        <div class="type-filter">
+          <h2>レアリティ</h2>
+          <div class="chip-list"><label class="filter-chip"><input type="checkbox" data-filter-kind="rarity" value="UR"> <span>UR</span></label></div>
+        </div>
+        <div class="type-filter">
+          <h2>タイプ</h2>
+          <div class="chip-list"><label class="filter-chip"><input type="checkbox" data-filter-kind="unit_type" value="攻撃"> <span>攻撃</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="unit_type" value="耐久"> <span>耐久</span></label>
 <label class="filter-chip"><input type="checkbox" data-filter-kind="unit_type" value="支援"> <span>支援</span></label></div>
+        </div>
       </div>
       <div class="row">
         <label class="field">キーワード検索
@@ -300,7 +311,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">劉備ユニコーンガンダム(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">SDガンダムワールド 三国創傑伝</span>
               <span class="tag-overview"><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="tag">専用機</span><span class="more-tags">ほか3件</span></span>
@@ -328,7 +339,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">ガンダム・キャリバーン(最終決戦時)(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダム 水星の魔女</span>
               <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか4件</span></span>
@@ -356,7 +367,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">ガンダム・バルバトスルプスレクス(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダム 鉄血のオルフェンズ</span>
               <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
@@ -384,7 +395,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">ガンダムAGE-1 ノーマル(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダムAGE</span>
               <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか6件</span></span>
@@ -412,7 +423,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">ガンダムエクシア(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダム00</span>
               <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか4件</span></span>
@@ -440,7 +451,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">ガンダムアストレイ レッドフレーム改(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダムSEED VS ASTRAY</span>
               <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか6件</span></span>
@@ -468,7 +479,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="耐久">耐久</span>
                 <strong class="ms-name">ガンダム(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダム</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
@@ -496,7 +507,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">ガンダムEz8(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダム 第08MS小隊</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
@@ -524,7 +535,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="支援">支援</span>
                 <strong class="ms-name">ジ・O(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士Zガンダム</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">ライバル</span><span class="more-tags">ほか4件</span></span>
@@ -552,7 +563,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">ジオング(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダム</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">ライバル</span><span class="more-tags">ほか4件</span></span>
@@ -580,7 +591,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">シャア専用ザクII(THE ORIGIN版)(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダム THE ORIGIN</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
@@ -608,7 +619,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">ケンプファー</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダム0080 ポケットの中の戦争</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">試作機</span><span class="more-tags">ほか2件</span></span>
@@ -636,7 +647,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">ブルーディスティニー1号機(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダム外伝 THE BLUE DESTINY</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
@@ -664,7 +675,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="耐久">耐久</span>
                 <strong class="ms-name">フルアーマー・ガンダム(サンダーボルト版)(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダム サンダーボルト</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
@@ -692,7 +703,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="支援">支援</span>
                 <strong class="ms-name">サイコ・ザク(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダム サンダーボルト</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">主人公</span><span class="more-tags">ほか7件</span></span>
@@ -720,7 +731,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">アトラスガンダム(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダム サンダーボルト</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか8件</span></span>
@@ -748,7 +759,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="支援">支援</span>
                 <strong class="ms-name">ガンダム試作2号機(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダム0083 STARDUST MEMORY</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">ライバル</span><span class="more-tags">ほか4件</span></span>
@@ -776,7 +787,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="耐久">耐久</span>
                 <strong class="ms-name">ガンダム試作3号機(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダム0083 STARDUST MEMORY</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
@@ -804,7 +815,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">ノイエ・ジール(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダム0083 STARDUST MEMORY</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">ライバル</span><span class="more-tags">ほか4件</span></span>
@@ -832,7 +843,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">ストライカー・カスタム(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダム KATANA</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか4件</span></span>
@@ -860,7 +871,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="支援">支援</span>
                 <strong class="ms-name">ル・シーニュ(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダム エコール・デュ・シエル</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
@@ -888,7 +899,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">Zガンダム(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士Zガンダム</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか7件</span></span>
@@ -916,7 +927,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">Ex-Sガンダム(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">ガンダム・センチネル</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか8件</span></span>
@@ -944,7 +955,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="耐久">耐久</span>
                 <strong class="ms-name">フルアーマーZZガンダム(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダムZZ</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか4件</span></span>
@@ -972,7 +983,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">キュベレイ(ZZ版)(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダムZZ</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ライバル</span><span class="tag">サイコミュ</span><span class="more-tags">ほか4件</span></span>
@@ -1000,7 +1011,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="支援">支援</span>
                 <strong class="ms-name">νガンダム(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダム 逆襲のシャア</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか6件</span></span>
@@ -1028,7 +1039,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">サザビー(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダム 逆襲のシャア</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">ライバル</span><span class="more-tags">ほか5件</span></span>
@@ -1056,7 +1067,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">Hi-νガンダム(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">CCA-MSV</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
@@ -1084,7 +1095,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="支援">支援</span>
                 <strong class="ms-name">ナイチンゲール</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">CCA-MSV</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">ライバル</span><span class="more-tags">ほか6件</span></span>
@@ -1112,7 +1123,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="耐久">耐久</span>
                 <strong class="ms-name">νガンダム(ダブル・フィン・ファンネル装備型)(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">CCA-MSV</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか6件</span></span>
@@ -1140,7 +1151,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">ユニコーンガンダム(デストロイモード)(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダムUC</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか7件</span></span>
@@ -1168,7 +1179,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="耐久">耐久</span>
                 <strong class="ms-name">バンシィ・ノルン(デストロイモード)(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダムUC</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">ライバル</span><span class="more-tags">ほか6件</span></span>
@@ -1196,7 +1207,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="支援">支援</span>
                 <strong class="ms-name">シナンジュ(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダムUC</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">ライバル</span><span class="more-tags">ほか6件</span></span>
@@ -1224,7 +1235,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="支援">支援</span>
                 <strong class="ms-name">ユニコーンガンダム(デストロイモード/覚醒)(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダムUC</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
@@ -1252,7 +1263,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">ガンダムデルタカイ</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">MSV</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか8件</span></span>
@@ -1280,7 +1291,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="耐久">耐久</span>
                 <strong class="ms-name">ナラティブガンダムA装備(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダムNT</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか7件</span></span>
@@ -1308,7 +1319,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">ユニコーンガンダム3号機 フェネクス(デストロイモード)(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダムNT</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか7件</span></span>
@@ -1336,7 +1347,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">Ξガンダム(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダム 閃光のハサウェイ</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか6件</span></span>
@@ -1364,7 +1375,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="耐久">耐久</span>
                 <strong class="ms-name">ペーネロペー(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダム 閃光のハサウェイ</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">ライバル</span><span class="more-tags">ほか7件</span></span>
@@ -1392,7 +1403,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="耐久">耐久</span>
                 <strong class="ms-name">ガンダムF91</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダムF91</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
@@ -1420,7 +1431,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">クロスボーン・ガンダムX1改(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士クロスボーン・ガンダム</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか4件</span></span>
@@ -1448,7 +1459,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">マスターガンダム(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動武闘伝Gガンダム</span>
               <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">ライバル</span><span class="more-tags">ほか5件</span></span>
@@ -1476,7 +1487,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">ゴッドガンダム(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動武闘伝Gガンダム</span>
               <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか6件</span></span>
@@ -1504,7 +1515,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">ウイングガンダムゼロ(EW版)(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">新機動戦記ガンダムW Endless Waltz</span>
               <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか7件</span></span>
@@ -1532,7 +1543,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="耐久">耐久</span>
                 <strong class="ms-name">ガンダムデスサイズヘル(EW版)(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">新機動戦記ガンダムW Endless Waltz</span>
               <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">専用機</span><span class="more-tags">ほか5件</span></span>
@@ -1560,7 +1571,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="支援">支援</span>
                 <strong class="ms-name">トールギスIII</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">新機動戦記ガンダムW Endless Waltz</span>
               <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">試作機</span><span class="tag">一撃必殺</span><span class="more-tags">ほか4件</span></span>
@@ -1588,7 +1599,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">ガンダムDX(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動新世紀ガンダムX</span>
               <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
@@ -1616,7 +1627,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="支援">支援</span>
                 <strong class="ms-name">ガンダムヴァサーゴチェストブレイク(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動新世紀ガンダムX</span>
               <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">ライバル</span><span class="more-tags">ほか5件</span></span>
@@ -1644,7 +1655,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="支援">支援</span>
                 <strong class="ms-name">フリーダムガンダム(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダムSEED</span>
               <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
@@ -1672,7 +1683,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="耐久">耐久</span>
                 <strong class="ms-name">ジャスティスガンダム</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダムSEED</span>
               <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">ライバル</span><span class="more-tags">ほか5件</span></span>
@@ -1700,7 +1711,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="支援">支援</span>
                 <strong class="ms-name">プロヴィデンスガンダム</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダムSEED</span>
               <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">ライバル</span><span class="more-tags">ほか5件</span></span>
@@ -1728,7 +1739,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="耐久">耐久</span>
                 <strong class="ms-name">ガンダムアストレイ ゴールドフレーム天ミナ(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダムSEED ASTRAY</span>
               <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">ライバル</span><span class="more-tags">ほか5件</span></span>
@@ -1756,7 +1767,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="支援">支援</span>
                 <strong class="ms-name">スーパーハイペリオンガンダム</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダムSEED X ASTRAY</span>
               <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">ライバル</span><span class="more-tags">ほか6件</span></span>
@@ -1784,7 +1795,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">ストライクフリーダムガンダム(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダムSEED DESTINY</span>
               <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか6件</span></span>
@@ -1812,7 +1823,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="支援">支援</span>
                 <strong class="ms-name">フォースインパルスガンダム(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダムSEED DESTINY</span>
               <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか6件</span></span>
@@ -1840,7 +1851,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">デスティニーガンダム(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダムSEED DESTINY</span>
               <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
@@ -1868,7 +1879,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="耐久">耐久</span>
                 <strong class="ms-name">ガンダムアストレイ ゴールドフレームアマテラス</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダムSEED ASTRAY</span>
               <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか6件</span></span>
@@ -1896,7 +1907,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="耐久">耐久</span>
                 <strong class="ms-name">ダブルオーライザー(最終決戦仕様)(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダム00</span>
               <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
@@ -1924,7 +1935,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="支援">支援</span>
                 <strong class="ms-name">ガンダムAGE-2 ノーマル(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダムAGE</span>
               <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか8件</span></span>
@@ -1952,7 +1963,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="耐久">耐久</span>
                 <strong class="ms-name">ガンダム・バルバトス(第6形態)(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダム 鉄血のオルフェンズ</span>
               <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか6件</span></span>
@@ -1980,7 +1991,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="支援">支援</span>
                 <strong class="ms-name">ガンダム・アスタロトリナシメント(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダム 鉄血のオルフェンズ 月鋼</span>
               <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
@@ -2008,7 +2019,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="支援">支援</span>
                 <strong class="ms-name">ガンダム・エアリアル(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダム 水星の魔女</span>
               <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか4件</span></span>
@@ -2036,7 +2047,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="耐久">耐久</span>
                 <strong class="ms-name">ガンダム・エアリアル改修型(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダム 水星の魔女</span>
               <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
@@ -2064,7 +2075,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="支援">支援</span>
                 <strong class="ms-name">ガンダム・ファラクト(Season2仕様)(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダム 水星の魔女</span>
               <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">試作機</span><span class="more-tags">ほか4件</span></span>
@@ -2092,7 +2103,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="支援">支援</span>
                 <strong class="ms-name">ビルドストライクガンダム(フルパッケージ)(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">ガンダムビルドファイターズ</span>
               <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか6件</span></span>
@@ -2120,7 +2131,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="支援">支援</span>
                 <strong class="ms-name">モンスターブラックドラゴン(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">SDガンダム外伝</span>
               <span class="tag-overview"><span class="tag">ガンダム</span><span class="tag">ライバル</span><span class="tag">専用機</span><span class="more-tags">ほか4件</span></span>
@@ -2148,7 +2159,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="支援">支援</span>
                 <strong class="ms-name">Zガンダム3号機P2型</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">GUNDAM EVOLVE</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか8件</span></span>
@@ -2176,7 +2187,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">キャスバル専用ガンダム</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダム ギレンの野望</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
@@ -2204,7 +2215,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="支援">支援</span>
                 <strong class="ms-name">フェニックスガンダム(能力解放)(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">SDガンダム GGENERATION</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="more-tags">ほか7件</span></span>
@@ -2232,7 +2243,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="支援">支援</span>
                 <strong class="ms-name">ハルファスガンダム(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">SDガンダム GGENERATION</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="more-tags">ほか7件</span></span>
@@ -2260,7 +2271,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">サイコ・ハロ(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">SDガンダム GGENERATION</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">オルタナティブシリーズ</span><span class="tag">サイコミュ</span><span class="more-tags">ほか4件</span></span>
@@ -2288,7 +2299,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="支援">支援</span>
                 <strong class="ms-name">グレート・ジオング(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">SDガンダム GGENERATION</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">モビルアーマー</span><span class="more-tags">ほか7件</span></span>
@@ -2316,7 +2327,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="支援">支援</span>
                 <strong class="ms-name">ガンダムアクエリアス</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">SDガンダム GGENERATION</span>
               <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">試作機</span><span class="more-tags">ほか5件</span></span>
@@ -2344,7 +2355,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="攻撃">攻撃</span>
                 <strong class="ms-name">ガンダムベルフェゴール</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">SDガンダム GGENERATION</span>
               <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">地球連邦軍(X)</span><span class="more-tags">ほか6件</span></span>
@@ -2372,7 +2383,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="耐久">耐久</span>
                 <strong class="ms-name">サイコ・ガンダムMk-III</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">GUNDAM BATTLE MASTER</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">ガンダム</span><span class="tag">モビルアーマー</span><span class="more-tags">ほか4件</span></span>
@@ -2400,7 +2411,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="支援">支援</span>
                 <strong class="ms-name">β・アジール</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">MSV</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">モビルアーマー</span><span class="more-tags">ほか6件</span></span>
@@ -2428,7 +2439,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="支援">支援</span>
                 <strong class="ms-name">ガンダムスローネアイントゥルブレンツ</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダム00V</span>
               <span class="tag-overview"><span class="tag">オルタナティブシリーズ</span><span class="tag">ガンダム</span><span class="tag">可変機</span><span class="more-tags">ほか7件</span></span>
@@ -2456,7 +2467,7 @@
               <span class="summary-title-row">
                 <span class="unit-type" data-unit-type="支援">支援</span>
                 <strong class="ms-name">ビグ・ラング(EX)</strong>
-                <span class="rarity">UR</span>
+                <span class="rarity" data-rarity="UR">UR</span>
               </span>
               <span class="primary-series">機動戦士ガンダム MS IGLOO</span>
               <span class="tag-overview"><span class="tag">宇宙世紀シリーズ</span><span class="tag">モノアイ</span><span class="tag">主人公</span><span class="more-tags">ほか5件</span></span>
@@ -2547,7 +2558,7 @@
             : "";
           return '<details class="ms-card">'
             + '<summary><span class="summary-main">'
-            + '<span class="summary-title-row"><span class="unit-type" data-unit-type="' + escapeHtml(record.unit_type) + '">' + escapeHtml(record.unit_type) + '</span><strong class="ms-name">' + escapeHtml(record.ms_name) + '</strong><span class="rarity">' + escapeHtml(record.rarity) + '</span></span>'
+            + '<span class="summary-title-row"><span class="unit-type" data-unit-type="' + escapeHtml(record.unit_type) + '">' + escapeHtml(record.unit_type) + '</span><strong class="ms-name">' + escapeHtml(record.ms_name) + '</strong><span class="rarity" data-rarity="' + escapeHtml(record.rarity) + '">' + escapeHtml(record.rarity) + '</span></span>'
             + '<span class="primary-series">' + escapeHtml(record.series[0] || "シリーズ未登録") + '</span>'
             + '<span class="tag-overview">' + overview + remaining + '</span>'
             + '</span><span class="toggle-label" aria-hidden="true"><span class="show-label">詳細を表示</span><span class="hide-label">閉じる</span></span></summary>'
@@ -2556,8 +2567,9 @@
             + noteBlock + '</div></details>';
         }
         function updateResults() {
-          var selectedConditions = filterInputs.filter(function (input) { return input.checked && input.dataset.filterKind !== "unit_type"; });
+          var selectedConditions = filterInputs.filter(function (input) { return input.checked && input.dataset.filterKind !== "unit_type" && input.dataset.filterKind !== "rarity"; });
           var selectedTypes = filterInputs.filter(function (input) { return input.checked && input.dataset.filterKind === "unit_type"; });
+          var selectedRarities = filterInputs.filter(function (input) { return input.checked && input.dataset.filterKind === "rarity"; });
           var checkedMode = document.querySelector('input[name="mode"]:checked');
           var mode = checkedMode ? checkedMode.value : "and";
           var term = keyword.value.trim().toLocaleLowerCase("ja");
@@ -2568,8 +2580,10 @@
                 : selectedConditions.some(function (input) { return matchesFilter(record, input); }));
             var typeMatch = selectedTypes.length === 0
               || selectedTypes.some(function (input) { return record.unit_type === input.value; });
+            var rarityMatch = selectedRarities.length === 0
+              || selectedRarities.some(function (input) { return record.rarity === input.value; });
             var keywordMatch = !term || String(record.ms_name || "").toLocaleLowerCase("ja").indexOf(term) !== -1;
-            return typeMatch && conditionMatch && keywordMatch;
+            return rarityMatch && typeMatch && conditionMatch && keywordMatch;
           });
           resultCount.textContent = filtered.length + "件";
           results.innerHTML = filtered.length
